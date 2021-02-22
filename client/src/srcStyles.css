@@ -1,0 +1,412 @@
+
+body{
+ font-family: Montserrat , sans-serif;
+ background-color: rgba(245,245,245, 0.4);
+
+}
+
+
+.footer {
+  position:fixed;
+  bottom:0;
+  height: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #262626;
+  color: white;
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+}
+
+
+.footerLinks{
+  color: white;
+  font-weight: 500;
+  padding-right: 3px;
+  padding-left: 3px;
+}
+
+
+.footerLinks:hover{
+  text-decoration: none;
+  color: 	#E0E0E0;
+}
+
+
+.trail a:hover{
+    text-decoration: none;
+}
+
+.title {
+  text-decoration: none !important;
+  color:  black;
+  font-size: 50px;
+  font-family: Montserrat , sans-serif;
+  font-weight: 600;
+
+}
+
+
+ .title:hover{
+   color: black;
+   opacity: .90;
+ }
+
+
+
+
+ .shadow:focus {
+   box-shadow: none;
+ }
+
+
+
+
+
+
+ .borderStyle{
+     border: 0;
+     height: 1px;
+     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+ }
+
+
+
+/* this is the the title */
+.blogStyle{
+  color: #172A3A;
+  margin: 0 auto;
+  font-size: 35px;
+}
+
+
+
+/* just for the title */
+.blogStyle:hover{
+  color: black;
+  opacity: .60;
+}
+
+/* this is just for picture */
+.cardStyle:hover{
+  opacity: .90;
+}
+
+
+
+
+/* everything here is for single blog  */
+
+.blogTitle{
+  font-size: 35px;
+  font-weight: 500
+
+}
+
+/* .customStyle{
+  background-color: red
+} */
+
+
+.blogShadow{
+  box-shadow: 0 2px 5px 1px rgba(0, 51, 51, 0.05);
+}
+
+
+.customStyle{
+  padding-left: 5em;
+  padding-right: 5%;
+}
+
+
+.customSizing{
+  justify-content:flex-end;
+}
+
+
+@media only screen and (max-width: 990px) {
+  .customStyle{
+    text-align: center;
+    margin: auto;
+
+  }
+  .container{
+    width: 100%
+  }
+}
+
+
+
+/* styling the form  */
+
+.btnStyle{
+  text-decoration: none !important;
+}
+
+
+
+
+
+.element {
+    color: #fff;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.5em;
+}
+
+
+
+
+/* styling for initial edit /trash can */
+.buttons {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+
+
+.style > div > div{
+  border: none !important;
+  font-family: Montserrat , sans-serif;
+  padding-right: 0px !important;
+}
+
+ /* .ql-editor{
+  padding-left: 0px !important;
+} */
+
+.ql-container {
+    font-size: inherit !important;
+    padding-right: 0px !important;
+}
+
+
+
+ /* .ql-editor {
+    padding-left: 0px !important;
+} */
+
+
+.ql-editor.ql-blank::before {
+  /* padding-left: 5px; */
+  color: grey;
+  font-family: inherit;
+  font-style: normal;
+  font-family: Montserrat , sans-serif;
+}
+
+.ql-editor.ql-blank{
+  /* padding-left: 5px; */
+  font-family: inherit;
+  font-style: normal;
+  font-family: Montserrat , sans-serif;
+}
+
+.ql-editor{
+color: #495057;
+font-family: Montserrat , sans-serif;
+}
+
+
+
+/* header */
+
+
+.headerLinks{
+  font-size : 20px;
+  color: #404040;
+  transition: 0.2s;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+
+.headerLinks:hover{
+  color: red;
+}
+
+.headerLinks{
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+
+.headerLinks::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: red;
+    transition: width .3s;
+}
+
+.headerLinks:hover::after {
+    width: 100%;
+    //transition: width .3s;
+}
+
+
+/* stylign for pagination buttons */
+
+
+
+.cstBtn{
+  position: relative;
+  float: right;
+}
+
+.titleEdit{
+    margin-bottom: 255px
+}
+
+
+
+
+
+
+
+
+.collapseStyling{
+  float: right;
+  text-align: end;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+@media only screen and (max-width: 990px  ) {
+  .collapseStyling{
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+
+
+
+
+@media only screen and (max-width: 1000px  ) {
+  .customCardStyle{
+    padding-left: 15%;
+    padding-right: 15%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+
+.backgIMG{
+   background-image: url('./moutains.png');
+   background-position: 100px -75px;
+   opacity: 0.75;
+}
+
+
+
+/* hambuger */
+
+
+
+
+/* this is for the info so the two divs space out evenly */
+.adjustedInfo{
+margin-bottom: 65%
+}
+
+
+
+/* this is just for the left link or logo navbar */
+
+.navbarLogo{
+  font-size: 20px;
+  color: black;
+
+}
+
+.navbarLogo:hover{
+  color: black;
+  text-decoration: none;
+}
+
+
+
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+/*
+
+
+
+*{
+  transition: all 0.2s ease-in-out;
+  font-family: Arial;
+}
+
+
+
+
+
+
+
+
+
+.menu{
+  position: absolute;
+  left:0;
+}
+.settings{
+  position: absolute;
+  right:0;
+}
+.icon-menu{
+}
+
+
+
+nav{
+  position: absolute;
+  background:  darken(#0099cc, 10%);
+  width: 100%;
+  left:0;
+  top: -100%;
+  z-index: 999;
+  transition-timing: 5s;
+
+  li{
+    list-style:none;
+    text-align:center;
+    a{
+      display:block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 24pt;
+      &:hover{
+        background:  darken(#0099cc, 5%);
+        text-decoration: underline;
+      }
+    }
+  }
+} */
+
+
+
+/*
+.down{
+  top: 74px;
+} */

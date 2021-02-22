@@ -1,0 +1,68 @@
+import {combineReducers} from 'redux'
+
+
+
+import authReducer from './authReducer'
+import blogsReducer from './blogsReducer'
+
+import errorsReducer from './errorsReducer'
+
+import setPermaReducer from './setPermaReducer'
+
+import {reducer as reduxForm} from 'redux-form' // reducer for redux form
+
+import currentBlogReducer from './currentBlogReducer'
+
+import currentPageReducer from './currentPageReducer'
+
+import fetchAllBlogsReducer from './fetchAllBlogsReducer'
+
+import blogsByStateReducer from './blogsByStateReducer'
+
+import totalBlogCountReducer from './totalBlogCountReducer'
+
+import relatedBlogsReducer from './relatedBlogsReducer'
+
+import favoritesReducer from './favoritesReducer'
+
+import commReviewBlogReducer from './commReviewBlogReducer'
+
+import commApprovedBlogReducer from './commApprovedBlogReducer'
+
+import currentReviewCommunitytBlogReducer from './currentReviewCommunitytBlogReducer'
+
+import tagsReducer from './tagsReducer' //gets all tags from database
+
+
+import currrentUserNameReducer from './currrentUserNameReducer'// getting the current users name, this is for the hello message
+
+
+import feedbackReducer from './feedbackReducer'
+
+export default combineReducers({
+  auth: authReducer,
+  blogs: blogsReducer,
+  currentBlog: currentBlogReducer,
+  form: reduxForm,
+  error: errorsReducer,
+  permaCookie : setPermaReducer,
+  currentPage :currentPageReducer,
+  allBlogs :fetchAllBlogsReducer,
+  byStateBlogs: blogsByStateReducer,
+
+  blogCount: totalBlogCountReducer,
+  relatedBlogs: relatedBlogsReducer,
+
+  favorites: favoritesReducer,
+
+  communityBlogReview: commReviewBlogReducer,
+  communityBlogsApproved : commApprovedBlogReducer,
+  currentCommunitytBlog: currentReviewCommunitytBlogReducer,
+
+  tags : tagsReducer,
+
+  username: currrentUserNameReducer,
+
+
+  feedback: feedbackReducer //this is for getting feedback from users
+})

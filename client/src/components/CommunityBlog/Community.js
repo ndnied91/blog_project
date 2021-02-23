@@ -16,13 +16,13 @@ import CommunityForm from './CommunityForm'
 
 import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS
 
-
+import PreviewCommunityPage from './PreviewCommunityPage'
 
 class Community extends React.Component{
 constructor(props){
   super(props)
 
-  this.state= ({ showForm: false, showModal : false, columns: [] })
+  this.state= ({ showForm: false, showModal : false, columns: []  , showPre: false  })
 
 }
 
@@ -35,8 +35,9 @@ componentDidMount(){
 
 
   showForm(e){
+  this._div.scrollTop = 0
     if(this.state.showForm ===false){
-      this.setState({ showForm: true , showModal: true })
+      this.setState({ showForm: true , showModal: true , showPre: false})
 
 
     }
@@ -45,6 +46,19 @@ componentDidMount(){
     }
 
   }
+
+
+
+showPreview(){
+  this.setState({showForm: false , showPre: true})
+}
+
+
+
+// onReturn(){
+//    this.setState({ showForm: true ,showPre: false})
+// }
+
 
 
 
@@ -86,18 +100,19 @@ componentDidMount(){
       }
 
 
-
-
-
     return(
 
-<div >
+<div ref={(ref) => this._div = ref}>
   <Header/>
       <div >
 
       <div>
           <button className="btn btn-dark" onClick={(e)=>this.showForm(e)}> Blog <i className="fas fa-plus"></i> </button>
-          {this.state.showForm ? <CommunityForm onCancel={ ()=> this.setState({showForm: false}) } /> : null }
+          {this.state.showForm ? <CommunityForm onCancel={ ()=> this.setState({showForm: false})} showPreview={ ()=>  this.setState({showForm: false , showPre: true})  }  edit={ ()=> this.setState({ showForm: true ,showPre: false}) } /> : null }
+
+            { this.state.showPre === true ? <PreviewCommunityPage  onReturn={ ()=> {this.setState({ showForm: true ,showPre: false})}  } /> : null}
+
+
       </div>
 
 
@@ -123,7 +138,7 @@ componentDidMount(){
 
 
 const mapStateToProps = (state) => {
-  return { blogs: state.communityBlogsApproved}
+  return { blogs: state.communityBlogsApproved , preview : state.previewComm}
 }
 
 export default connect( mapStateToProps , {fetchApprovedCommBlogs , fetchApprovedCommBlog , getTags} )(Community)

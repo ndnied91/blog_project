@@ -39,8 +39,6 @@ class App extends React.Component{
 
 
  async componentDidMount(){
-
-
       this._div.scrollTop = 0
 
        axios.get('/api/current_user/user').then(function(result) {

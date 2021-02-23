@@ -113,3 +113,15 @@ export const deleteCommunityBlog = (values, history) => async dispatch => {
     history.push('/community')
   }
 }
+
+
+
+
+
+//this is for getting the preview community blog to work
+// COMMUNITY_PREVIEW
+
+export const previewBlog = ( values ) =>({
+  type: 'COMMUNITY_PREVIEW',
+  payload: values
+})

@@ -39,6 +39,10 @@ import currrentUserNameReducer from './currrentUserNameReducer'// getting the cu
 
 import feedbackReducer from './feedbackReducer'
 
+
+
+import communityPreviewReducer from './communityPreviewReducer'
+
 export default combineReducers({
   auth: authReducer,
   blogs: blogsReducer,
@@ -64,5 +68,8 @@ export default combineReducers({
   username: currrentUserNameReducer,
 
 
-  feedback: feedbackReducer //this is for getting feedback from users
+  feedback: feedbackReducer, //this is for getting feedback from users
+
+
+  previewComm: communityPreviewReducer //this is for getting the preview to work  
 })

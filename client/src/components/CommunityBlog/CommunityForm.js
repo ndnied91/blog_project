@@ -2,12 +2,14 @@ import React from 'react'
 
 import Header from '../Header'
 
+import PreviewCommunityPage from './PreviewCommunityPage'
+
 import {withRouter , Link} from 'react-router-dom'
 
 import {reduxForm, Field} from 'redux-form'
 import {connect} from 'react-redux'
 
-import { submitCommunityPost } from '../../actions/communityIndex.js'
+import {  previewBlog } from '../../actions/communityIndex.js'
 
 import swal from 'sweetalert';
 import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS
@@ -16,7 +18,34 @@ class CommunityForm extends React.Component{
   constructor(props){
     super(props)
 
-    this.state = { title: '' , author: '' , communityBody: ''  , image: ''  , summary: ''  , state: '' , tags: [ ] , secret: ''  , featured: false };
+
+    const {preview} = this.props
+    this.state = { title: preview.title   ,
+                   author: preview.author ,
+                   communityBody: preview.communityBody  ,
+                   image: preview.image  ,
+
+                   summary: preview.summary  ,
+                   state: preview.state ,
+                   tags: preview.tags ,
+                   secret: preview.secret  ,
+                   featured: preview.featured
+                 };
+
+
+
+                 // this.state = { title:  ''  ,
+                 //                author: '' ,
+                 //                communityBody: ''  ,
+                 //                image: ''  ,
+                 //                summary:''  ,
+                 //                state: '' ,
+                 //                tags: '' ,
+                 //                secret: ''  ,
+                 //                featured: false
+                 //              };
+
+
 
     this.onInputchange = this.onInputchange.bind(this);
     this.onInputchangeBod = this.onInputchangeBod.bind(this);
@@ -38,6 +67,7 @@ class CommunityForm extends React.Component{
     checkbox =(event)=>{
       this.setState({ featured: event.target.checked })
     }
+
 
 
   renderQuill = ({ input })=> {
@@ -68,34 +98,6 @@ class CommunityForm extends React.Component{
   render(){
 
 
-    const renderModal=()=>{
-      return(
-        <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
-        </button>
-
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      )
-    }
 
 
 const showTags = () =>{
@@ -105,6 +107,7 @@ const showTags = () =>{
     } )
   }
 }
+
 
 
 
@@ -152,9 +155,12 @@ const verifyTitle= (title)=>{
 }
 
 const onSubmitForm= async()=>{
+
+
   let missing =[]
 
   for (const property in this.state) {
+    // console.log( property,  this.state[property].length)
       if(this.state[property].length === 0){
         if(property === 'communityBody'){ missing.push('body') }
         else{ missing.push(property) }
@@ -168,12 +174,23 @@ const onSubmitForm= async()=>{
 
       await verifyTags(this.state.tags)
       await verifyTitle(this.state.title)
-      console.log(this.state)
-      this.props.submitCommunityPost(this.state, this.props.history)
+
+      this.props.showPreview(this.state)//this is a callback from parent (community.js)
+
+      this.props.previewBlog(this.state) //this is where the data is actually being stored
+
+
 }
 
 
+
+
+
+
     return(
+
+
+
       <div className="container">
 
 
@@ -286,7 +303,7 @@ const onSubmitForm= async()=>{
       </div>
 
 
-      { /*  radio button to allow to add to main features page  */ }
+
 
 
 
@@ -297,7 +314,7 @@ const onSubmitForm= async()=>{
 
       <div className="row">
           <div className="col-12 col-md-8">
-            <button className="btn btn-outline-secondary btn-lg btn-block" type="submit"  onClick={onSubmitForm} > Submit </button>
+            <button className="btn btn-outline-secondary btn-lg btn-block" type="submit"  onClick={onSubmitForm}  > Preview </button>
             <br/>
           </div>
 
@@ -305,6 +322,9 @@ const onSubmitForm= async()=>{
               <button class="btn btn-outline-danger btn-lg btn-block" type="submit"  onClick={this.props.onCancel} > Cancel </button>
           </div>
       </div>
+
+
+
 
     </div>
 
@@ -314,12 +334,11 @@ const onSubmitForm= async()=>{
   }
 }
 
-
 const mapStateToProps = (state)=>{
-  return {tags: state.tags}
+  return {tags: state.tags , preview: state.previewComm}
 }
 
 
 export default reduxForm({
   form: 'communityForm',
-})(connect(mapStateToProps, {submitCommunityPost})(withRouter(CommunityForm)))
+})(connect(mapStateToProps, { previewBlog})(withRouter(CommunityForm)))

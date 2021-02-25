@@ -4,11 +4,19 @@ import ReactQuill from 'react-quill';
 import {connect} from 'react-redux'
 import {withRouter , Link} from 'react-router-dom'
 
-import { submitCommunityPost  ,  previewBlog} from '../../actions/communityIndex.js'
+
+import { submitCommunityPost , previewBlog} from '../../actions/communityIndex.js'
+
+import ConfirmAddModal from './ConfirmAddModal'
 
 import CommunitySideCard from './CommunitySideCard'
-class PreviewCommunityPage extends React.Component{
 
+class PreviewCommunityPage extends React.Component{
+  constructor(props){
+    super(props)
+
+    this.state={ showModal: false }
+  }
 
    componentDidMount(){
        // this._div.scrollTop = 0
@@ -18,7 +26,7 @@ class PreviewCommunityPage extends React.Component{
 
   render(){
 
-    console.log(this.props.blog)
+    // console.log(this.props.blog)
 
       const { blog } = this.props; //destructutred values
 
@@ -57,6 +65,10 @@ const submitandClear=()=>{
 }
 
 
+const confirmModal=()=>{
+  this.setState({ showModal: true})
+}
+
 
     return(
       <div className="container" >
@@ -65,7 +77,7 @@ const submitandClear=()=>{
             <div className="row">
               { /*    <div className="col-lg-8"> {renderBlogContent()}  </div>   */}
               <div className="col-lg-8"> {renderBlogContent()}  </div>
-              <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <CommunitySideCard/> </div>
+              <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <CommunitySideCard preview={this.props.blog}/> </div>
             </div>
           </div>
 
@@ -73,13 +85,19 @@ const submitandClear=()=>{
 
         <div className="row" style={{paddingTop: '50px', paddingBottom: '50px'}}>
             <div className="col-12 col-md-8">
-              <button className="btn btn-outline-secondary btn-lg btn-block" onClick={ submitandClear} > Submit </button>
+              <button className="btn btn-outline-secondary btn-lg btn-block" onClick={ confirmModal} > Submit </button>
+
               { /* this on submit should trigger and make a call to database to send out   */}
               <br/>
             </div>
 
             <div className="col-12 col-md-4" >
                 <button class="btn btn-outline-danger btn-lg btn-block" type="submit" onClick={this.props.onReturn} > Go back </button>
+                  {this.state.showModal === true ? <ConfirmAddModal
+                        blog={this.props.blog}
+                        history={this.props.history}
+                        hideModal={ ()=> this.setState({showModal: false }) } /> : null }  { /*  /callback to hide modal */}
+
                 { /* go back to edit blog   */}
             </div>
         </div>

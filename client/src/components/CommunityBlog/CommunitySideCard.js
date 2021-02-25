@@ -18,6 +18,17 @@ renderImage(){
 
 
 
+renderPreview(){
+  if(this.props.preview ){
+    return this.props.preview.image
+  }
+  return null
+}
+
+
+
+
+
 
 renderContent(){
   if(this.props.relatedBlogs && this.props.currentBlog){
@@ -45,8 +56,8 @@ renderContent(){
 
   render(){
 
-    // console.log(this.props)
-    // console.log(this.props.match.path)
+    console.log(this.props)
+
 
 if(this.props.relatedBlogs){
   this.props.relatedBlogs.forEach((item, i) => {
@@ -60,7 +71,7 @@ if(this.props.relatedBlogs){
 
     return(
       <div className="card " >
-        <img src={this.renderImage()}   className="card-img-top" alt="..."/>
+        <img src={ this.props.preview ? this.renderPreview() :  this.renderImage()}   className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title"> Check out some similar blogs </h5>
 

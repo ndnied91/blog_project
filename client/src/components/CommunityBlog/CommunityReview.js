@@ -36,22 +36,22 @@ class CommunityReview extends React.Component{
     const renderContent=()=>{
 
       if(this.props.blogs.length > 0){
-      return this.props.blogs.map( (blog)=>{
-        return(
-          <div className="container pt-3">
-            <span className="card-title "> <Link to={`/dashboard/review/${blog.title} `} blog={'blog'} className="nav-link">  {capitalizeFirstLetter(blog.title)}  </Link> </span>
-             <p className="nav-link"> {blog.created} </p>
-         </div>
-        )
-      })
-    }
-    else
-        return(
-          <div style={{paddingTop: '50px'}}>
-            <center><h2>No Blogs to Review </h2></center>
-           </div>
-        )
-  }
+          return this.props.blogs.map( (blog)=>{
+              return(
+                <div className="container pt-3">
+                  <span className="card-title "> <Link to={`/dashboard/review/${blog.title} `} blog={'blog'} className="nav-link">  {capitalizeFirstLetter(blog.title)}  </Link> </span>
+                   <p className="nav-link"> {blog.created} </p>
+               </div>
+              )
+          })
+      }
+        else
+            return(
+              <div style={{paddingTop: '50px'}}>
+                <center><h2>No Blogs to Review </h2></center>
+               </div>
+            )
+      }
 
 
     return(

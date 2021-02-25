@@ -96,13 +96,13 @@ const blogReview = () =>{
 
       return(
         <div ref="main">
-            <div class="container-lg"  style={{}}>
+            <div class="container-lg"  >
 
                 <hr className='borderStyle' style={{marginTop: '25px'}}/>
                 {blogReview()}
                 <div className="row">
                   <div className="col-lg-8">  {renderContent()}  </div>
-                  <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <SideCard/> </div>
+                  <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <SideCard reviewImg={this.props.reviewBlog} /> </div>
                 </div>
           </div>
          </div>

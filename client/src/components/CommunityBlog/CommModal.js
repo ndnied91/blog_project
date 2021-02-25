@@ -18,12 +18,12 @@ function CommModal(props){
             keyboard={false}
             style={{top: '30%'}}
           >
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title>Blog Guidelines</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              I will not close if you click outside me. Don't even try to press
-              escape key.
+            Please take a minute to read over these guidelines prior to writing a blog
+
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={handleClose}>Understood</Button>

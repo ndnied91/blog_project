@@ -43,6 +43,8 @@ import feedbackReducer from './feedbackReducer'
 
 import communityPreviewReducer from './communityPreviewReducer'
 
+import fetchFeaturedReducer from './fetchFeaturedReducer' //this is for getting featured blogs into dash
+
 export default combineReducers({
   auth: authReducer,
   blogs: blogsReducer,
@@ -53,23 +55,15 @@ export default combineReducers({
   currentPage :currentPageReducer,
   allBlogs :fetchAllBlogsReducer,
   byStateBlogs: blogsByStateReducer,
-
   blogCount: totalBlogCountReducer,
   relatedBlogs: relatedBlogsReducer,
-
   favorites: favoritesReducer,
-
   communityBlogReview: commReviewBlogReducer,
   communityBlogsApproved : commApprovedBlogReducer,
   currentCommunitytBlog: currentReviewCommunitytBlogReducer,
-
   tags : tagsReducer,
-
   username: currrentUserNameReducer,
-
-
   feedback: feedbackReducer, //this is for getting feedback from users
-
-
-  previewComm: communityPreviewReducer //this is for getting the preview to work  
+  previewComm: communityPreviewReducer, //this is for getting the preview to work
+  featuredBlogs : fetchFeaturedReducer  //this is for getting featured blogs into dash
 })

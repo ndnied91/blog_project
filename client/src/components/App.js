@@ -23,7 +23,7 @@ import CommunityReview from './CommunityBlog/CommunityReview'
 import IndiCommBlogReview from './CommunityBlog/IndiCommBlogReview'
 import CommunityIndBlog from './CommunityBlog/CommunityIndBlog'
 
-
+import FeaturedBlogs from './CommunityBlog/FeaturedBlogs'
 
 import Footer from './Footer'
 
@@ -145,6 +145,10 @@ class App extends React.Component{
                         <Route exact path="/dashboard/blogs/new" component={BlogNew}/>
                         <Route exact path="/dashboard/review" component={CommunityReview}/>
                         <Route exact path="/dashboard/review/:title" component={IndiCommBlogReview}/>
+
+                        <Route exact path="/dashboard/featured" component={FeaturedBlogs}/>
+
+
                         <Route exact path="/register" component={Register}/>
 
 

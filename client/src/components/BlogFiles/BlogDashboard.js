@@ -56,6 +56,8 @@ class Dashboard extends React.Component{
                 <Button> <Link to ="/dashboard/blogs/new" className="btn-floating btn-large red"> New Post </Link> </Button>
                 <Button> <Link to ="/"> View all Blogs  </Link> </Button>
 
+                <Button > <Link to ="/dashboard/featured" className="btn-floating btn-large"> Featured  </Link> </Button>
+
                 <Button onClick={this.props.fetchCurrentBlog} > <Link style={{color : notifcation() }} to ="/dashboard/review" className="btn-floating btn-large"> Review  </Link> </Button>
 
                 <Button><a href="/api/logout"> Logout </a></Button>

@@ -3,7 +3,7 @@ const {Schema} = mongoose
 
 
 
-const blogSchema = new Schema({
+const featuredSchema = new Schema({
   //creating a subdocument collection 128
   title: String,
   body: String ,
@@ -15,10 +15,9 @@ const blogSchema = new Schema({
   hitCount: { type: Number, default: 0 },
   tags: [{ type: String }],
 
-  author: String, //mainly for featured blogs
-  timeUpdated: String //for featured blogs 
+  author: String //mainly for featured blogs
 })
 
 
 
-module.exports = mongoose.model('blog', blogSchema) //model class
+module.exports = mongoose.model('featuredBlog', featuredSchema) //model class

@@ -12,6 +12,9 @@ const CommunityBlog = require('../models/CommunityBlogs.js')
 const ReviewedCommBlogs = require('../models/ReviewedCommunityBlogs.js')
 
 
+const FeaturedHolding = require('../models/FeaturedHolding.js')
+
+
 let id = '60203af896cca33740f1bb11'
 
 // const filters = require("./filters.js");
@@ -61,6 +64,16 @@ module.exports = (app)=>{
 
 
 
+  // //this route is for getting featured blogs to show up on dashboard
+   app.get(`/api/blogs/community/featured` , async (req,res)=>{
+     const blogs = await FeaturedHolding.find()
+     res.send(blogs)
+   })
+
+
+
+
+
 
   // this is for when user wants to delete their own blog, keys have to match
    app.post(`/api/blogs/community/user/:id` , async (req,res)=>{
@@ -99,7 +112,7 @@ module.exports = (app)=>{
 
    await CommunityBlog.findOneAndDelete({title: req.params.title }, function (err) {
      if(err) console.log(err);
-      console.log("Successful deletion");
+      console.log("Successful deletion from holding, added blog to comm");
       });
 
    res.send(200)
@@ -141,9 +154,6 @@ module.exports = (app)=>{
 
 
 
-
-
-
      // REVIEWED AND APPROVED BLOGS
           app.post('/api/blogs/community/review', async(req,res)=>{
 
@@ -152,7 +162,6 @@ module.exports = (app)=>{
                   console.log(typeof tags)
 
                   const newBlog = new ReviewedCommBlogs({
-
                     title,
                     author,
                     communityBody ,
@@ -167,35 +176,60 @@ module.exports = (app)=>{
                   })
 
 
-                   Tags.findById(id, function (err, docs) {
-                      if (err){
-                          console.log(err);
-                      }
-                        else{
-                            tags.forEach((item, i) => {
-                                 console.log(item)
 
-                                    if(!docs.tags.includes(item)){
-                                      //THIS IS NOT IN THE LIST ALREADY
-                                      // console.log('item being added',  item)
+                    //here we can add to fatured holding
+                    console.log(featured)
 
-                                      Tags.findByIdAndUpdate(id,
-                                          { "$push": { "tags": item } },
-                                          { "new": true, "upsert": true  , "unique" : true},
-                                          function (err, managerparent) {
-                                              if (err) throw err;
-                                              // console.log(managerparent);
+                    if(featured === true){
+                        console.log('FEATURED IS TRUE , HERE WE CAN ADD IT TO FEATURED HOLDING')
+                      const newHold = new FeaturedHolding({
+                        title,
+                        author,
+                        communityBody ,
+                        created : `${getMonth(month)} ${dayFormatting(date)} ${year}` ,
+                        image ,
+                        summary ,
+                        state,
+                        tags,
+                        timestamp : moment.tz(Date.now(), "America/New_York").format(),
+                        secret
+                      })
+                          await newHold.save()
+                    }
+
+
+
+
+                         Tags.findById(id, function (err, docs) {
+                            if (err){
+                                console.log(err);
+                            }
+                              else{
+                                  tags.forEach((item, i) => {
+                                       console.log(item)
+
+                                          if(!docs.tags.includes(item)){
+                                            //THIS IS NOT IN THE LIST ALREADY
+                                            // console.log('item being added',  item)
+
+                                            Tags.findByIdAndUpdate(id,
+                                                { "$push": { "tags": item } },
+                                                { "new": true, "upsert": true  , "unique" : true},
+                                                function (err, managerparent) {
+                                                    if (err) throw err;
+                                                    // console.log(managerparent);
+                                                }
+                                            ); //end of tag statement
+
                                           }
-                                      ); //end of tag statement
-
-                                    }
-                              }); //end of for each statement
-                        }
+                                    }); //end of for each statement
+                              }
                   });
 
 
                   try{
                     await newBlog.save()
+
                     res.sendStatus(200)
 
                 } catch(err){

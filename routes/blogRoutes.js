@@ -60,7 +60,7 @@ module.exports = (app) => {
 //ADDS A BLOG TO THE DATABASE
     app.post('/api/blogs', async(req,res)=>{
 
-            const {title,body, image , summary , state , tags } = req.body
+            const {title,body, image , summary , state , tags , author } = req.body
             console.log(tags)
             console.log(typeof tags)
 
@@ -73,7 +73,8 @@ module.exports = (app) => {
               summary ,
               state,
               tags,
-              timestamp : moment.tz(Date.now(), "America/New_York").format()
+              timestamp : moment.tz(Date.now(), "America/New_York").format(),
+              author
             })
 
 

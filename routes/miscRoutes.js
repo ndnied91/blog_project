@@ -6,6 +6,7 @@ const moment = require('moment-timezone');
 
 const Comment = require('../models/Comment.js')
 
+const FeaturedHolding = require('../models/FeaturedHolding.js')
 
 
 module.exports = (app) => {
@@ -74,8 +75,13 @@ module.exports = (app) => {
 app.get('/api/feedback' , async (req,res)=>{
   //gets feedback from database
   const comments = await Comment.find()
+  console.log(comments)
+  console.log('makig a call')
   res.send(comments)
 })
+
+
+
 
 
 } //end of module

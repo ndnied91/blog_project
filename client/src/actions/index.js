@@ -42,6 +42,9 @@ export const fetchBlogs = ( skip=0 , limit= 5 ) => async dispatch => {
 
 //make a call to this api with params that return the specific number of blogs
 export const fetchIndividualBlog = (title) => async dispatch => {
+  console.log('LOADING INDIVIDUAL BLOG')
+  //HERE WE WILL BE FIXING THE HIT COUNT
+
   const res = await axios.get(`/api/blogs/${title}`)
    dispatch({ type: 'CURRENT_BLOG' , payload: res.data[0]})
 }
@@ -79,7 +82,6 @@ export const fetchUser = () => async dispatch => {
     console.log(res)
     history.push('/')
     dispatch({ type: 'FETCH_USER' , payload : res.data })
-
   }
 
 
@@ -223,7 +225,5 @@ export const postFeedback = (values) => async dispatch => {
 //THIS ROUTE IS FOR GETTING FEEDBACK FROM THE DATABASE
 export const getFeedback = () => async dispatch => {
   const res = await axios.get(`/api/feedback`)
-  console.log(res)
-
    dispatch({ type: 'FETCH_FEEDBACK' , payload: res.data})
 }

@@ -116,6 +116,22 @@ export const deleteCommunityBlog = (values, history) => async dispatch => {
 
 
 
+//this action is for getting featured blogs to show up on DASHBOARD
+  export const fetchFeaturedBlogs = () => async dispatch => {
+    const res = await axios.get(`/api/blogs/community/featured`)
+     dispatch({ type: 'FETCH_FEATURED' , payload: res.data}) //REVIEW PAGE
+  }
+
+
+//ADDS BLOG TO MAIN PAGE
+  export const addFeatured = (values, history) => async dispatch => {
+      const res = await axios.post('/api/blogs', values)
+      history.push('/dashboard/featured')
+    // dispatch({ type: 'FETCH_USER' , payload : res.data }) *}
+  }
+
+
+
 
 
 //this is for getting the preview community blog to work

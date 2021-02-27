@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link,Route, NavLink } from 'react-router-dom'
 
 import {connect} from 'react-redux'
 
@@ -38,7 +37,7 @@ componentDidMount(){
 
 
   const capitalizeFirstLetter =(text)=> {
-      text = text.replaceAll('-', ' ').toLowerCase().split(' ') .map((s) => s.charAt(0).toUpperCase() + s.substring(1)) .join(' ');
+      text = text.replaceAll('-', ' ').toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
     return text
   }
 

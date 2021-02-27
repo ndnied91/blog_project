@@ -2,12 +2,12 @@
 import axios from 'axios'
 // import { withCookies } from 'react-cookie';
 
-import Cookies from 'js-cookie'
+
 
 
 import swal from 'sweetalert';
 
-import SweetAlert from 'react-bootstrap-sweetalert';
+
 
 
 //THIS IS STRICTLY FOR COMMUNITY BLOGS, BEFORE BEING REVIEWED
@@ -55,9 +55,9 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 
 //AFTER BLOG REVIEW , GETS SUBMITTED
   export const submitReviewedCommunityPost = (values, history) => async dispatch => {
-    const res = await axios.post('/api/blogs/community/review', values)
+    await axios.post('/api/blogs/community/review', values)
       history.push('/dashboard/review')
-       // dispatch({ type: 'COMMUNITY_BLOGS_REVIEW' , payload: res.data})
+
   }
 
 
@@ -125,9 +125,8 @@ export const deleteCommunityBlog = (values, history) => async dispatch => {
 
 //ADDS BLOG TO MAIN PAGE
   export const addFeatured = (values, history) => async dispatch => {
-      const res = await axios.post('/api/blogs', values)
+    await axios.post('/api/blogs', values)
       history.push('/dashboard/featured')
-    // dispatch({ type: 'FETCH_USER' , payload : res.data }) *}
   }
 
 

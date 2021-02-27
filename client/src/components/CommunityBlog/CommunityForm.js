@@ -1,10 +1,7 @@
 import React from 'react'
 
-import Header from '../Header'
 
-import PreviewCommunityPage from './PreviewCommunityPage'
-
-import {withRouter , Link} from 'react-router-dom'
+import {withRouter } from 'react-router-dom'
 
 import {reduxForm, Field} from 'redux-form'
 import {connect} from 'react-redux'
@@ -123,7 +120,7 @@ const verifyTags=(tags)=>{
 
 
   const capitalizeFirstLetter =(text)=> {
-      text = text.toLowerCase().split(',') .map((s) => s.charAt(0).toUpperCase() + s.substring(1)) .join(' ');
+      text = text.toLowerCase().split(',').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
     return text
   }
 

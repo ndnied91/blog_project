@@ -7,13 +7,12 @@ import {  deleteBlog  , fetchIndividualBlog , getSimliarBlogs} from '../../actio
 
 import {reduxForm} from 'redux-form'
 import ReactQuill from 'react-quill';
-import { Link } from 'react-router-dom'
+
 
 import {fetchApprovedCommBlog} from '../../actions/communityIndex.js'
 
 import '../../srcStyles.css'
 
-import EditBlog from '../BlogFiles/EditBlog'
 import CommunitySideCard from './CommunitySideCard'
 
 
@@ -59,7 +58,7 @@ class IndividualBlog extends React.Component {
 
 
 capitalizeFirstLetter(text){
-    text = text.replaceAll('-', ' ').toLowerCase().split(' ') .map((s) => s.charAt(0).toUpperCase() + s.substring(1)) .join(' ');
+    text = text.replaceAll('-', ' ').toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
   return text
 }
 

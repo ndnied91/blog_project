@@ -234,7 +234,12 @@ module.exports = (app) => {
 
 //THIS IS FOR GETTING THE BLOGS PER TITLE SO WHEN YOU REFRESH BLOGS ARE STILL THERE
   app.get('/api/blogs/:title' , async (req, res) => {
-    const blog = await Blog.find( { title: req.params.title } )
+
+    const filter = {  title: req.params.title  };
+    const update = {  $inc: { hitCount: 1 }  };
+    const blog = await Blog.findOneAndUpdate(filter ,update )
+    //HIT COUNT INCREMETATION 
+
     res.send(blog)
    });
 

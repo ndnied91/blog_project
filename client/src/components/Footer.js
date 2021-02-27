@@ -17,12 +17,12 @@ const Footer = () =>{
                           <span className="trail"> <Link to="/contact" > <p className="footerLinks" > | Contact </p> </Link></span>
 
 
-                        <a style={{marginTop:'1px'}}  className="footerLinks" target="_blank" href='https://github.com/ndnied91'> | <i class="fab fa-github fa-lg"></i> </a>
+                        <a style={{marginTop:'1px'}}  className="footerLinks" target="_blank" href='https://github.com/ndnied91'> | <i className="fab fa-github fa-lg"></i> </a>
 
-                        <a style={{marginTop:'1px'}} className="footerLinks" target="_blank" href='https://www.instagram.com/danny_n00/'> | <i class="fab fa-instagram fa-lg"></i> </a>
+                        <a style={{marginTop:'1px'}} className="footerLinks" target="_blank" href='https://www.instagram.com/danny_n00/'> | <i className="fab fa-instagram fa-lg"></i> </a>
 
 
-                        <a style={{marginTop:'1px'}} className="footerLinks" target="_blank" href='https://www.linkedin.com/in/daniel-niedzwiedzki/'> | <i class="fab fa-linkedin fa-lg"></i> </a>
+                        <a style={{marginTop:'1px'}} className="footerLinks" target="_blank" href='https://www.linkedin.com/in/daniel-niedzwiedzki/'> | <i className="fab fa-linkedin fa-lg"></i> </a>
 
 
 

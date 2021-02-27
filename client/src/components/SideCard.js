@@ -29,12 +29,12 @@ renderPreview(){
 
 renderContent(){
   if(this.props.relatedBlogs && this.props.currentBlog){
-    return this.props.relatedBlogs.map((blog)=>{
+    return this.props.relatedBlogs.map((blog  , index)=>{
       if(blog.title !== this.props.currentBlog.title){
         return(
-          <div>
-              <ul className="list-group list-group-flush">
-                    <Link className="card-link" to={`/blogs/${blog.title }`}> <p  onClick ={ () => this.props.fetchIndividualBlog(blog.title)} >{blog.title.replace(/-/g, ' ')} </p> </Link>
+          <div key={index}>
+              <ul  className="list-group list-group-flush">
+                    <Link key={index} className="card-link" to={`/blogs/${blog.title }`}> <p  key={index} onClick ={ () => this.props.fetchIndividualBlog(blog.title)} >{blog.title.replace(/-/g, ' ')} </p> </Link>
               </ul>
           </div>
         )
@@ -52,18 +52,6 @@ renderContent(){
 
 
   render(){
-
-    console.log(this.props)
-
-
-if(this.props.relatedBlogs){
-  this.props.relatedBlogs.forEach((item, i) => {
-      // console.log(item)
-  });
-
-}
-
-
 
 
     return(

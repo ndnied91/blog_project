@@ -83,7 +83,7 @@ function preSubmitEdit(values, history){
     </div>
 
     <label> Image:  </label>
-          <div  style={{height: 'auto' }}key={props.formValues.image} style={{height: 'inherit' ,  marginBottom: "20px"}}>
+          <div  style={{height: 'auto' }} key={props.formValues.image} style={{height: 'inherit' ,  marginBottom: "20px"}}>
                     <img  className="card-img cardStyle"  src={props.formValues.image} width="100%" height='auto' />
           </div>
 

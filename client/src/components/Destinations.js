@@ -21,14 +21,10 @@ class Destinations extends React.Component{
 
   render(){
 
-    // const capitalizeFirstLetter =(string)=> {
-    //   return string.charAt(0).toUpperCase() + string.slice(1);
-    // }
-
     const capitalizeFirstLetter =(text)=> {
-        text = text.toLowerCase().split(' ') .map((s) => s.charAt(0).toUpperCase() + s.substring(1)) .join(' ');
+        text = text.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
       return text
-}
+    }
 
 
 

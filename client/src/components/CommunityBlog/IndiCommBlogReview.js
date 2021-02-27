@@ -4,9 +4,9 @@ import React from 'react'
 import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS
 import {withRouter} from 'react-router-dom'
 
-import { Field} from 'redux-form'
+
 import {connect} from 'react-redux'
-import _ from 'lodash'
+
 
 import {fetchIndBlogForReview , submitReviewedCommunityPost , deleteFromPending } from '../../actions/communityIndex.js'
 import SideCard from '../SideCard'
@@ -38,7 +38,7 @@ async componentDidMount(){
 
 
     const capitalizeFirstLetter =(text)=> {
-        text = text.replaceAll('-', ' ').toLowerCase().split(' ') .map((s) => s.charAt(0).toUpperCase() + s.substring(1)) .join(' ');
+        text = text.replaceAll('-', ' ').toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
       return text
     }
 

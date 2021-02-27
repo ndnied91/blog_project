@@ -68,9 +68,9 @@ class Header extends React.Component{
 
           <div ref={node => this.node = node}> {/* this is for dropdown, DONT TOUCH  */}
 
-                 <nav class="navbar navbar-expand-lg navbar-light bannerGround" >
+                 <nav className="navbar navbar-expand-lg navbar-light bannerGround" >
 
-                  <a >  <Link to="/" className="navbarLogo" > <span>  Logo can go here  </span> </Link>  </a>
+                  <span>  <Link to="/" className="navbarLogo" > <span>  Logo can go here  </span> </Link>  </span>
 
 
 
@@ -88,7 +88,7 @@ class Header extends React.Component{
 
 
 
-                        <ul class="navbar-nav mt-0 mt-lg-0 collapseStyling" >
+                        <ul className="navbar-nav mt-0 mt-lg-0 collapseStyling" >
 
 
 

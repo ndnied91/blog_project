@@ -30,7 +30,7 @@ class About extends React.Component{
                       </section>
 
 
-                      <img src="https://pbs.twimg.com/media/Eh7XTyLWoAE1feS.jpg" alt="picture of a cabin " style={{width: '100%' , maxWidth: '600px' , height: '100%' , paddingTop: '15px' , paddingBottom: '15px'}}/ >
+                      <img src="https://pbs.twimg.com/media/Eh7XTyLWoAE1feS.jpg" alt="picture of a cabin" style={{width: '100%' , maxWidth: '600px' , height: '100%' , paddingTop: '15px' , paddingBottom: '15px'}}/ >
 
                       <section style={{paddingTop: '35px'}}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo elit id tellus ullamcorper tempus. Morbi eu tellus est.

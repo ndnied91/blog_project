@@ -4,7 +4,7 @@ import React from 'react'
 
 
 
-import {withRouter , Link} from 'react-router-dom'
+import {withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import { updateBlog ,fetchIndividualBlog } from '../../actions'

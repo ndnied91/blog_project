@@ -14,8 +14,6 @@ import { getTags} from '../../actions/'
 
 import CommunityForm from './CommunityForm'
 
-import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS
-
 import PreviewCommunityPage from './PreviewCommunityPage'
 
 class Community extends React.Component{

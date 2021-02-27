@@ -13,9 +13,7 @@ import { fetchBlogs  , fetchCurrentBlog , updatePage , blogCount } from '../../a
 import '../../srcStyles.css'
 
 class BlogsList extends React.Component {
-    constructor(props){
-      super(props)
-    }
+
 
 
    componentDidMount() {

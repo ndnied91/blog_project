@@ -7,7 +7,6 @@ import { setPermaCookie , fetchIndividualBlog , getSimliarBlogs} from '../../act
 
 import {reduxForm} from 'redux-form'
 import ReactQuill from 'react-quill';
-import { Link } from 'react-router-dom'
 
 import '../../srcStyles.css'
 
@@ -123,7 +122,7 @@ renderEditDeleteBtn(){
     return (
       <div ref="main">
         <Header/>
-        <div class="container-lg">
+        <div className="container-lg">
             <hr className='borderStyle' style={{marginTop: '25px'}}/>
             <div className="row">
               <div className="col-lg-8">  {this.state.showComponent ?  <EditBlog blog={this.props.blog} onCancel={this._onCancelClick} hideForm={this._hideForm} />  : <div>{ this.renderBlogContent()} </div>  }  </div>
@@ -138,10 +137,7 @@ renderEditDeleteBtn(){
 }
 
 
-// <div className="container" ref="main">
-//   <div className="row">
-//   </div>
-// </div>
+
 
 
 const mapStateToProps = (state, props) => {

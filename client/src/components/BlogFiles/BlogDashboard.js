@@ -2,7 +2,7 @@
 
 
 import React from 'react'
-import { BrowserRouter, Link , Route} from 'react-router-dom'
+import {  Link } from 'react-router-dom'
 // import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUser, setPermaCookie, fetchCurrentBlog , getFeedback} from '../../actions'

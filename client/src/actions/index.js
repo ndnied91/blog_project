@@ -46,7 +46,9 @@ export const fetchIndividualBlog = (title) => async dispatch => {
   //HERE WE WILL BE FIXING THE HIT COUNT
 
   const res = await axios.get(`/api/blogs/${title}`)
-   dispatch({ type: 'CURRENT_BLOG' , payload: res.data[0]})
+
+    console.log(res.data)
+   dispatch({ type: 'CURRENT_BLOG' , payload: res.data})
 }
 
 

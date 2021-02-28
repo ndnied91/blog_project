@@ -118,6 +118,29 @@ export const deleteCommunityBlog = (values, history) => async dispatch => {
 
 
 
+//admin delete blog
+export const adminDeleteCommunity = (blogId , user, history ) => async dispatch => {
+
+  let items = {blogId , user}
+
+   await axios.post(`/api/blogs/community/admin/${items.blogId}` , items)
+
+    history.push('/community')
+
+
+  // }
+}
+
+
+
+
+
+
+
+
+
+
+
 //this action is for getting featured blogs to show up on DASHBOARD
   export const fetchFeaturedBlogs = () => async dispatch => {
     const res = await axios.get(`/api/blogs/community/featured`)

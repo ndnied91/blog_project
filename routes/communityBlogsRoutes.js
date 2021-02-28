@@ -15,7 +15,7 @@ const ReviewedCommBlogs = require('../models/ReviewedCommunityBlogs.js')
 const FeaturedHolding = require('../models/FeaturedHolding.js')
 
 
-
+const User = require('../models/User.js')
 
 
 let id = '60203af896cca33740f1bb11'
@@ -143,6 +143,62 @@ app.post('/api/blogs/featured' , async (req,res)=>{
       else{
           res.send( {error: 'incorrect key'})
       }
+
+   })
+
+
+
+//////ADMIN DELETE POST
+   app.post(`/api/blogs/community/admin/:id` , async (req,res)=>{
+     // console.log(req.body)
+     const {blogId, user} = req.body
+
+
+      User.findOne( { _id : user } ,  async function (err, result) {
+        if (err) {
+            console.log(err)
+          }
+        if (!result) {
+        // do stuff here
+        console.log('not found')
+        res.sendStatus(401)
+    }
+    if (result){
+      console.log('verified user')
+
+              await ReviewedCommBlogs.findByIdAndRemove(blogId , function (err) {
+                if(err) console.log(err);
+                   res.send( {success: 'blog deleted'})
+                 });
+    }
+
+    else{
+      res.sendStatus(404)
+    }
+})
+
+
+
+
+
+
+
+
+     //check if user is valid
+
+     // if valid find blog and delete blog
+
+      // const blog = await ReviewedCommBlogs.findById(blog_id)
+      //
+      // if(blog.secret === key){
+      //       await ReviewedCommBlogs.findByIdAndRemove(blog_id , function (err) {
+      //         if(err) console.log(err);
+      //            res.send( {success: 'blog deleted'})
+      //          });
+      // }
+      // else{
+      //     res.send( {error: 'incorrect key'})
+      // }
 
    })
 

@@ -1,5 +1,7 @@
-import React from 'react'
+//form the user uses to create a blog
 
+
+import React from 'react'
 
 import {withRouter } from 'react-router-dom'
 

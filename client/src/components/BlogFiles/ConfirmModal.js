@@ -6,20 +6,33 @@ import {connect} from 'react-redux'
 
 import { deleteBlog } from '../../actions'
 
+
+
+import { adminDeleteCommunity } from '../../actions/communityIndex'
+
 import { Button , Modal} from 'react-bootstrap';
 
 
 class ConfirmModal extends React.Component{
 
   render(){
-
         const deleteBlog =(blog_id , history )=>{
-            this.props.deleteBlog(blog_id, history)
+            if(this.props.location){
+              console.log('deleteing community blog')
+              this.props.adminDeleteCommunity(blog_id, this.props.user, history )
+              // this.props.adminDeleteCommunity(blog_id, '2349237984' , history )
+            }
+            else{
+              this.props.deleteBlog(blog_id, history) //main blog delete
+            }
+
         }
 
 
+
+
     return(
-        
+
       <div>
 
             <Modal
@@ -50,4 +63,4 @@ class ConfirmModal extends React.Component{
 
 
 
-export default connect(null , {deleteBlog})(ConfirmModal)
+export default connect(null , {deleteBlog , adminDeleteCommunity})(ConfirmModal)

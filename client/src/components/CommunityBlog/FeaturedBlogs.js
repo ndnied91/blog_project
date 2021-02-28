@@ -63,7 +63,7 @@ componentDidMount(){
 
 
     return(
-      <div>
+      <div className="container" style={{border: '1px solid black ' , float: 'left'  , width: '60%', marginLeft: '1%'  , height: '500px'}}>
 
       <center>
       Featured Blogs

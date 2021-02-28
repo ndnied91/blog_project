@@ -5,7 +5,7 @@ import React from 'react'
 import {  Link } from 'react-router-dom'
 // import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchUser, setPermaCookie, fetchCurrentBlog , getFeedback} from '../../actions'
+import {fetchUser, setPermaCookie, fetchCurrentBlog , getFeedback , clearUser} from '../../actions'
 
 import {fetchBlogsForReview  } from '../../actions/communityIndex'
 import { withCookies } from 'react-cookie';
@@ -60,7 +60,7 @@ class Dashboard extends React.Component{
 
                 <Button onClick={this.props.fetchCurrentBlog} > <Link style={{color : notifcation() }} to ="/dashboard/review" className="btn-floating btn-large"> Review  </Link> </Button>
 
-                <Button><a href="/api/logout"> Logout </a></Button>
+                <Button><a href="/api/logout"  onClick={ ()=> this.props.clearUser()  } > Logout </a></Button>
           </center>
 
           </div>
@@ -130,4 +130,4 @@ const mapStateToProps = (state) => {
         }
 }
 
-export default connect(mapStateToProps , {fetchUser , setPermaCookie, fetchBlogsForReview , fetchCurrentBlog , getFeedback})(withCookies(Dashboard))
+export default connect(mapStateToProps , {fetchUser , setPermaCookie, fetchBlogsForReview , fetchCurrentBlog , getFeedback , clearUser})(withCookies(Dashboard))

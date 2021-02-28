@@ -22,16 +22,26 @@ const submitPost = async(blog)=>{
 }
 
 
+const deletePost = async(blog)=>{
+    await this.props.deleteFromFeatured(this.props.blog._id , this.props.history)
+    this.props.onCancel()
+}
+
+
+
+
+
 
     return(
           <div>
 
-            {blog.title}
-            {blog.created}
-            {blog.author}
-            {blog.instagram}
+            <h3>{blog.title} </h3>
+            <p>{blog.created} </p>
+            <p> {blog.author} </p>
+            <p> {blog.instagram} </p>
 
             <button  onClick={()=>submitPost(blog)} > Add to Blogs </button>
+            <button  onClick={()=>deletePost(blog)} > Delete Blog </button>
             <button onClick={this.props.onCancel}> Cancel </button>
           </div>
     )

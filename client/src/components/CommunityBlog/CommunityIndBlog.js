@@ -1,4 +1,4 @@
-
+//INDIVIDUAL BLOG ON THE COMMUNITY PAGE
 
 import React from 'react'
 import {connect} from 'react-redux'
@@ -8,6 +8,7 @@ import {  deleteBlog  , fetchIndividualBlog , getSimliarBlogs} from '../../actio
 import {reduxForm} from 'redux-form'
 import ReactQuill from 'react-quill';
 
+import ConfirmModal from '../BlogFiles/ConfirmModal.js'
 
 import {fetchApprovedCommBlog} from '../../actions/communityIndex.js'
 
@@ -22,7 +23,7 @@ class IndividualBlog extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        showComponent: false, showModal: false
+        showComponent: false, showModal: false , showAdminDeleteModal: false
       };
       this._onButtonClick = this._onButtonClick.bind(this);
       this._onCancelClick = this._onCancelClick.bind(this);
@@ -50,7 +51,9 @@ class IndividualBlog extends React.Component {
   }
 
 
-
+  deleteConfirm(){
+    this.setState({ showAdminDeleteModal: true})
+  }
 
 
 
@@ -64,17 +67,21 @@ capitalizeFirstLetter(text){
 
 
 
-deleteBlog(){
-  alert("Clicked")
-  //please enter the secret key you set up when creating the blog
-
-  // if key matches the key thats in the db, remove blog
-  this.setState({showModal: true });
 
 
 
+renderDeleteBtn(){
+
+  if( this.props.user ){
+    return(
+      <div>
+          <button onClick={()=> this.deleteConfirm()  } className="right buttons" >   <i style={{ color: 'red' }}className="fa fa-trash alt fa-2x fa-border buttons"  aria-hidden="true" ></i>    </button>
+          { this.state.showAdminDeleteModal === true ?  <ConfirmModal blog={this.props.currentBlog._id } location={'community'} history= {this.props.history}  user={this.props.user} hideModal={ ()=> this.setState({showAdminDeleteModal: false}) }/> : null}
+        </div>
+    )
+  }
+  return null
 }
-
 
 
 
@@ -82,7 +89,7 @@ deleteBlog(){
 
     if (this.props.currentBlog) {
         console.log('in community INDIVIDUAL blog')
-      console.log(this.props.currentBlog)
+      // console.log(this.props.currentBlog)
       return (
         <div className="container" ref="main">
 
@@ -128,6 +135,7 @@ deleteBlog(){
         <Header/>
         <div class="container-lg">
             <hr className='borderStyle' style={{marginTop: '25px'}}/>
+              {this.renderDeleteBtn()}
             <div className="row">
               <div className="col-lg-8">  {this.renderBlogContent()}  </div>
               <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <CommunitySideCard/> </div>
@@ -142,8 +150,8 @@ deleteBlog(){
 
 
 const mapStateToProps = (state, props) => {
-  console.log(state)
-  return { currentBlog: state.currentCommunitytBlog}
+  // console.log(state)
+  return { user : state.auth , currentBlog: state.currentCommunitytBlog}
 }
 
 

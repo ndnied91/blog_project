@@ -1,3 +1,5 @@
+//modal that shows up when user is abou to create a blog entrty 
+
 import {useState} from 'react'
 
 import { Button , Modal} from 'react-bootstrap';

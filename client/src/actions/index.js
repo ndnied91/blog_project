@@ -72,10 +72,16 @@ export const fetchCurrentBlog = ( id=null) => {
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get(`/api/current_user/user`)
-
-
       dispatch({ type: 'FETCH_USERNAME' , payload : res.data.username })
   }
+
+
+
+export const clearUser = () =>({
+  type: 'FETCH_USER',
+  payload: null
+})
+
 
 
 
@@ -187,6 +193,7 @@ export const submitEditPost = (values , history) => async dispatch => {
 export const updatePage = (number) => {
   return ({ type: 'CURR_PAGE' , payload : number })
   }
+
 
 
 

@@ -6,18 +6,19 @@ import {connect} from 'react-redux'
 import {withRouter } from 'react-router-dom'
 
 
-import { addFeatured  } from '../../actions/communityIndex'
+import { addFeatured  , deleteFromFeatured } from '../../actions/communityIndex'
 
 class FeaturedBlog extends React.Component{
 
   render(){
-    console.log(this.props)
+
       const {blog} = this.props
 
 
-const submitPost =(blog)=>{
-  console.log(blog)
-    this.props.addFeatured(blog, this.props.history)
+const submitPost = async(blog)=>{
+    await this.props.addFeatured(blog, this.props.history)
+    await this.props.deleteFromFeatured(this.props.blog._id , this.props.history)
+    this.props.onCancel()
 }
 
 
@@ -28,6 +29,7 @@ const submitPost =(blog)=>{
             {blog.title}
             {blog.created}
             {blog.author}
+            {blog.instagram}
 
             <button  onClick={()=>submitPost(blog)} > Add to Blogs </button>
             <button onClick={this.props.onCancel}> Cancel </button>
@@ -37,4 +39,4 @@ const submitPost =(blog)=>{
 }
 
 
-export default connect( null , {addFeatured} )(withRouter(FeaturedBlog))
+export default connect( null , {addFeatured , deleteFromFeatured} )(withRouter(FeaturedBlog))

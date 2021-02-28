@@ -9,7 +9,8 @@ const INITIAL_STATE={
   secret:'',
   state: '',
   tags: '',
-  featured: false
+  featured: false,
+  instagram: ''
 }
 
 

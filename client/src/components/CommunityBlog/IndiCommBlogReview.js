@@ -22,10 +22,12 @@ async componentDidMount(){
 
   render(){
 
-
   const submitApprovedCommunityPost= ()=>{
     //send over to community blogs
+
       console.log(this.props.reviewBlog)
+
+
       this.props.deleteFromPending(this.props.reviewBlog, this.props.history)
       this.props.submitReviewedCommunityPost(this.props.reviewBlog, this.props.history)
     }
@@ -54,11 +56,12 @@ async componentDidMount(){
 
                             <div className="text-muted" style={{fontSize: '15px' }}> {this.props.reviewBlog.created}</div>
                             <div className="text-muted" style={{fontSize: '15px' }}> Blog by: {this.props.reviewBlog.author} </div>
+                              <div className="text-muted" style={{fontSize: '15px' }}> Blog by: {this.props.reviewBlog.instagram} </div>
 
 
                             <div className="style">
                                <ReactQuill
-                                value={this.props.reviewBlog.communityBody}
+                                value={this.props.reviewBlog.body}
                                 modules = {{ toolbar: false }}
                                 readOnly={true} />
                             </div>

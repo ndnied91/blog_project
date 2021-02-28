@@ -7,7 +7,7 @@ const reviewedCommunityBlogsSchema = new Schema({
 
   title: String,
   author: String,
-  communityBody: String ,
+  body: String ,
   image: String,
   created : String,
   timestamp: String,
@@ -16,7 +16,8 @@ const reviewedCommunityBlogsSchema = new Schema({
   hitCount: { type: Number, default: 0 },
   tags: [{ type: String }],
   secret: String,
-  featured: Boolean
+  featured: Boolean,
+  instagram: String
 })
 
 

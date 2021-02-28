@@ -15,6 +15,9 @@ const ReviewedCommBlogs = require('../models/ReviewedCommunityBlogs.js')
 const FeaturedHolding = require('../models/FeaturedHolding.js')
 
 
+
+
+
 let id = '60203af896cca33740f1bb11'
 
 // const filters = require("./filters.js");
@@ -59,6 +62,55 @@ module.exports = (app)=>{
     else if( date.charAt(date.length-1) === 3 ) return `${date}rd`
     else return `${date}th`
   }
+
+
+
+
+
+
+
+
+
+
+//this will be for adding blogs to main blog page
+app.post('/api/blogs/featured' , async (req,res)=>{
+
+  console.log(req.body)
+
+  const {title,body, image , summary , state , tags , author , timestamp  , created , instagram } = req.body
+
+          const newBlog = new Blog({
+            title, body ,
+            created , //just to get the correct data format
+            image , summary , state, tags,
+            timestamp : moment.tz(Date.now(), "America/New_York").format(),
+            author,
+            original_post_date : timestamp, //when the user initially posted
+            instagram
+          })
+
+          try{
+            await newBlog.save()
+            res.sendStatus(200)
+
+        } catch(err){
+            res.sendStatus(422).send(err)
+        }
+
+})
+
+
+
+//idea here is to delete the featured blog as its being saved to the main blog
+  app.delete('/api/blogs/featured/:id' , async (req, res) => {
+    console.log(req.params)
+     await FeaturedHolding.deleteOne({ _id: req.params.id})
+     const featured = await FeaturedHolding.find()
+    res.send(featured)
+   });
+
+
+
 
 
 
@@ -131,7 +183,7 @@ module.exports = (app)=>{
 
    // THIS WILL BE FOR GETTING BLOGS THAT ARE ALREADY APPROVED
     app.get(`/api/blogs/community/approved` , async (req,res)=>{
-      const blogs = await ReviewedCommBlogs.find()
+      const blogs = await ReviewedCommBlogs.find({} , {"secret": 0 , "hitCount": 0}  )
       res.send(blogs)
     })
 
@@ -157,14 +209,13 @@ module.exports = (app)=>{
      // REVIEWED AND APPROVED BLOGS
           app.post('/api/blogs/community/review', async(req,res)=>{
 
-                  const {title, author, communityBody, image , summary , state , tags , secret , featured} = req.body
-                  console.log(tags)
-                  console.log(typeof tags)
+                  const {title, author, body, image , summary , state , tags , secret , featured , instagram} = req.body
+
 
                   const newBlog = new ReviewedCommBlogs({
-                    title,
+                    title ,
                     author,
-                    communityBody ,
+                    body ,
                     created : `${getMonth(month)} ${dayFormatting(date)} ${year}` ,
                     image ,
                     summary ,
@@ -172,27 +223,29 @@ module.exports = (app)=>{
                     tags,
                     timestamp : moment.tz(Date.now(), "America/New_York").format(),
                     secret,
-                    featured
+                    featured,
+                    instagram
                   })
 
-
+                  console.log(newBlog)
 
                     //here we can add to fatured holding
-                    console.log(featured)
+
 
                     if(featured === true){
                         console.log('FEATURED IS TRUE , HERE WE CAN ADD IT TO FEATURED HOLDING')
                       const newHold = new FeaturedHolding({
                         title,
                         author,
-                        communityBody ,
+                        body: body ,
                         created : `${getMonth(month)} ${dayFormatting(date)} ${year}` ,
                         image ,
                         summary ,
                         state,
                         tags,
                         timestamp : moment.tz(Date.now(), "America/New_York").format(),
-                        secret
+                        secret,
+                        instagram
                       })
                           await newHold.save()
                     }
@@ -241,18 +294,16 @@ module.exports = (app)=>{
 
 
 
-             //this is for CommunityBlogs NOT REVIEWED YET
+             //this is for CommunityBlogs NOT REVIEWED YET first step
               app.post('/api/blogs/community', async(req,res)=>{
 
-                      const {title, author, communityBody, image , summary , state , tags , secret, featured} = req.body
-                      console.log(tags)
-                      console.log(typeof tags)
+                      const {title, author, communityBody, image , summary , state , tags , secret, featured, instagram} = req.body
 
                       const newBlog = new CommunityBlog({
 
                         title,
                         author,
-                        communityBody ,
+                        body : communityBody ,
                         created : `${getMonth(month)} ${dayFormatting(date)} ${year}` ,
                         image ,
                         summary ,
@@ -260,9 +311,11 @@ module.exports = (app)=>{
                         tags,
                         timestamp : moment.tz(Date.now(), "America/New_York").format(),
                         secret,
-                        featured
+                        featured,
+                        instagram
                       })
 
+                      console.log(newBlog)
 
                        Tags.findById(id, function (err, docs) {
                           if (err){

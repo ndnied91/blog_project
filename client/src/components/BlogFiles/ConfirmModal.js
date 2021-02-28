@@ -19,6 +19,7 @@ class ConfirmModal extends React.Component{
 
 
     return(
+        
       <div>
 
             <Modal

@@ -60,7 +60,7 @@ module.exports = (app) => {
 //ADDS A BLOG TO THE DATABASE
     app.post('/api/blogs', async(req,res)=>{
 
-            const {title,body, image , summary , state , tags , author } = req.body
+            const {title,body, image , summary , state , tags , author  , instagram} = req.body
             console.log(tags)
             console.log(typeof tags)
 
@@ -74,7 +74,9 @@ module.exports = (app) => {
               state,
               tags,
               timestamp : moment.tz(Date.now(), "America/New_York").format(),
-              author
+              author,
+              original_post_date: moment.tz(Date.now(), "America/New_York").format(),
+              instagram
             })
 
 
@@ -118,7 +120,7 @@ module.exports = (app) => {
     //GETS THE SPECIFIC BLOG, EDITS AND RETURNS THE UPDATED BLOG
        app.post('/api/blogs/edit/:id' , async (req, res) => {
 
-         const {title,body, image, summary , state, tags} = req.body
+         const {title,body, image, summary , state, tags, instagram} = req.body
 
          console.log(tags)
          console.log(typeof tags)
@@ -131,7 +133,8 @@ module.exports = (app) => {
                           "body": body ,
                            "image":image  ,
                            "summary": summary , "state" : state,
-                            "tags" : tags
+                            "tags" : tags,
+                            "instagram" : instagram
                             }
 
                          };
@@ -238,7 +241,7 @@ module.exports = (app) => {
     const filter = {  title: req.params.title  };
     const update = {  $inc: { hitCount: 1 }  };
     const blog = await Blog.findOneAndUpdate(filter ,update )
-    //HIT COUNT INCREMETATION 
+    //HIT COUNT INCREMETATION
 
     res.send(blog)
    });

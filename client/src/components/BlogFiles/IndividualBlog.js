@@ -81,7 +81,11 @@ editPost(blog_id, history){
 renderEditDeleteBtn(){
 
   if( this.props.user ){
-    return <div>  {this.editPost(this.props.currentBlog._id , this.props.history) } </div>
+    return(
+      <div>
+        {this.editPost(this.props.currentBlog._id , this.props.history) }
+        </div>
+    )
   }
   return null
 }
@@ -89,10 +93,22 @@ renderEditDeleteBtn(){
 
 
 
+renderAuthor(){
+  return(
+    <div>
+        <div className="text-muted" style={{fontSize: '15px' }}> Created by: {this.props.currentBlog.author}</div>
+          <div>
 
+              <a href={`https://www.instagram.com/${this.props.currentBlog.instagram}`} target="_blank">   <i class="fab fa-2x fa-instagram"></i>  </a> 
+
+  </div>
+      </div>
+  )
+}
 
   renderBlogContent() {
     if (this.props.currentBlog) {
+        console.log(this.props.currentBlog)
 
       return (
 
@@ -102,7 +118,7 @@ renderEditDeleteBtn(){
           <div style={{ textAlign: 'left' }}>
                 <div className="blogTitle"> {this.props.currentBlog.title.split('-').join(' ')}</div>
                 <div className="text-muted" style={{fontSize: '15px' }}> {this.props.currentBlog.created}</div>
-
+                { this.props.currentBlog.author ? this.renderAuthor() : null }
               <div className="style">
                  <ReactQuill
                   value={this.props.currentBlog.body}
@@ -119,6 +135,9 @@ renderEditDeleteBtn(){
   }
 
   render() {
+
+    // console.log(this.props.currentBlog)
+
     return (
       <div ref="main">
         <Header/>
@@ -141,6 +160,7 @@ renderEditDeleteBtn(){
 
 
 const mapStateToProps = (state, props) => {
+  // console.log(state)
   return { user : state.permaCookie, currentBlog: state.currentBlog}
 }
 

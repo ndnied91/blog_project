@@ -81,6 +81,8 @@ deleteBlog(){
   renderBlogContent() {
 
     if (this.props.currentBlog) {
+        console.log('in community INDIVIDUAL blog')
+      console.log(this.props.currentBlog)
       return (
         <div className="container" ref="main">
 
@@ -99,10 +101,11 @@ deleteBlog(){
 
 
                 <div className="text-muted" style={{fontSize: '15px' }}> {this.props.currentBlog.created}</div>
+                <div className="text-muted" style={{fontSize: '15px' }}> {this.props.currentBlog.instagram}</div>
 
               <div className="style">
                  <ReactQuill
-                  value={this.props.currentBlog.communityBody}
+                  value={this.props.currentBlog.body}
                   modules = {{ toolbar: false }}
                   readOnly={true} />
               </div>
@@ -139,7 +142,7 @@ deleteBlog(){
 
 
 const mapStateToProps = (state, props) => {
-  // console.log(state)
+  console.log(state)
   return { currentBlog: state.currentCommunitytBlog}
 }
 

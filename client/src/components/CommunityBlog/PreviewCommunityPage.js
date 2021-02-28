@@ -1,3 +1,5 @@
+//THIS IS FOR WHEN USER IS CREATING THE BLOG
+
 import React from 'react'
 import ReactQuill from 'react-quill';
 
@@ -26,7 +28,7 @@ class PreviewCommunityPage extends React.Component{
 
   render(){
 
-    // console.log(this.props.blog)
+
 
       const { blog } = this.props; //destructutred values
 
@@ -40,6 +42,7 @@ class PreviewCommunityPage extends React.Component{
                   <div className="blogTitle"> {blog.title}</div>
                   <div className="text-muted" style={{fontSize: '15px' }}> Example Date </div>
                   <div className="text-muted" style={{fontSize: '15px' }}> Author : {blog.author} </div>
+                  <div className="text-muted" style={{fontSize: '15px' }}> instagram : {blog.instagram} </div>
             </div>
 
             <div className="style">
@@ -59,8 +62,10 @@ class PreviewCommunityPage extends React.Component{
 
 
 const submitandClear=()=>{
-   this.props.submitCommunityPost(this.props.blog, this.props.history)
-   let clearer = { title:'', author:'', communityBody: '', image: '', secret:'', state: '', tags: '', featured: false}
+    console.log('in preview')
+    console.log(this.props.blog)
+    this.props.submitCommunityPost(this.props.blog, this.props.history)
+   let clearer = { title:'', author:'', communityBody: '', image: '', secret:'', state: '', tags: '', featured: false, instagram: ''}
    this.props.previewBlog(clearer)
 }
 

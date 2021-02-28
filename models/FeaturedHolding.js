@@ -15,7 +15,8 @@ const featuredSchema = new Schema({
   hitCount: { type: Number, default: 0 },
   tags: [{ type: String }],
 
-  author: String //mainly for featured blogs
+  author: String, //mainly for featured blogs
+  instagram: String
 })
 
 

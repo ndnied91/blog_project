@@ -16,7 +16,8 @@ const blogSchema = new Schema({
   tags: [{ type: String }],
 
   author: String, //mainly for featured blogs
-  timeUpdated: String //for featured blogs 
+  original_post_date: String, //for featured blogs ,
+  instagram: String 
 })
 
 

@@ -26,21 +26,11 @@ class CommunityForm extends React.Component{
                    state: preview.state ,
                    tags: preview.tags ,
                    secret: preview.secret  ,
-                   featured: preview.featured
+                   featured: preview.featured,
+                   instagram: preview.instagram
                  };
 
 
-
-                 // this.state = { title:  ''  ,
-                 //                author: '' ,
-                 //                communityBody: ''  ,
-                 //                image: ''  ,
-                 //                summary:''  ,
-                 //                state: '' ,
-                 //                tags: '' ,
-                 //                secret: ''  ,
-                 //                featured: false
-                 //              };
 
 
 
@@ -129,6 +119,7 @@ const validation =(missing)=>{
   // console.log(formatted)
 
     missing.forEach((item, i) => {
+      console.log(item)
       if(item === 'communitybody'){
         item = 'community'
       }
@@ -173,7 +164,6 @@ const onSubmitForm= async()=>{
       await verifyTitle(this.state.title)
 
       this.props.showPreview(this.state)//this is a callback from parent (community.js)
-
       this.props.previewBlog(this.state) //this is where the data is actually being stored
 
 
@@ -288,6 +278,16 @@ const onSubmitForm= async()=>{
           <label> Do you want this blog to be featured in the main blog page? </label>
           <input style={{verticalAlign: 'middle', marginLeft: '10px'}}name="featured" type="checkbox"  value ={this.state.features} onChange={ this.checkbox} />
       </div>
+
+
+
+
+            <div>
+                <input className="form-control" style={{height: '55px' , marginBottom: "20px"}} name="instagram" type="text"  placeholder="What is your instagram " value={this.state.instagram} onChange={this.onInputchange} />
+            </div>
+
+
+
 
 
       <div>

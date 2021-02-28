@@ -6,6 +6,7 @@ import Archives from './Archives'
 import Favorites from './Favorites'
 import TravelTips from './TravelTips'
 import Destinations from './Destinations'
+import Overview from './Overview'
 
 
 import BlogDashboard from './BlogFiles/BlogDashboard'
@@ -150,6 +151,7 @@ class App extends React.Component{
 
 
                         <Route exact path="/register" component={Register}/>
+                        <Route exact path="/overview" component={Overview}/>
 
 
 

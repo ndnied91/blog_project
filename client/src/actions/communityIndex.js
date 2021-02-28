@@ -12,8 +12,9 @@ import swal from 'sweetalert';
 
 //THIS IS STRICTLY FOR COMMUNITY BLOGS, BEFORE BEING REVIEWED
   export const submitCommunityPost = (values, history) => async dispatch => {
+    console.log(values)
+
     const res = await axios.post('/api/blogs/community', values)
-    console.log(values )
 
 
     if(res.status === 200){
@@ -55,6 +56,7 @@ import swal from 'sweetalert';
 
 //AFTER BLOG REVIEW , GETS SUBMITTED
   export const submitReviewedCommunityPost = (values, history) => async dispatch => {
+    console.log(values)
     await axios.post('/api/blogs/community/review', values)
       history.push('/dashboard/review')
 
@@ -125,9 +127,22 @@ export const deleteCommunityBlog = (values, history) => async dispatch => {
 
 //ADDS BLOG TO MAIN PAGE
   export const addFeatured = (values, history) => async dispatch => {
-    await axios.post('/api/blogs', values)
+    await axios.post('/api/blogs/featured', values)
       history.push('/dashboard/featured')
   }
+
+
+
+
+
+export const deleteFromFeatured= (id , history )=> async dispatch => {
+  console.log(id)
+    const res = await axios.delete(`/api/blogs/featured/${id}`)
+    console.log(res)
+    // history.push('/dashboard/featured')
+
+    dispatch({ type: 'FETCH_FEATURED' , payload: res.data}) //REVIEW PAGE
+}
 
 
 

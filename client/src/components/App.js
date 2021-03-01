@@ -21,7 +21,7 @@ import BlogByState from './BlogFiles/BlogByState'
 
 import Community from './CommunityBlog/Community'
 import CommunityReview from './CommunityBlog/CommunityReview'
-import IndiCommBlogReview from './CommunityBlog/IndiCommBlogReview'
+import IndiCommBlogReview from './CommunityBlog/EverythingUserTouches/IndiCommBlogReview'
 import CommunityIndBlog from './CommunityBlog/CommunityIndBlog'
 
 import FeaturedBlogs from './CommunityBlog/FeaturedBlogs'

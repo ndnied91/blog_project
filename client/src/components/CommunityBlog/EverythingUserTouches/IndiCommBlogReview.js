@@ -8,8 +8,8 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 
-import {fetchIndBlogForReview , submitReviewedCommunityPost , deleteFromPending } from '../../actions/communityIndex.js'
-import SideCard from '../SideCard'
+import {fetchIndBlogForReview , submitReviewedCommunityPost , deleteFromPending } from '../../../actions/communityIndex.js'
+import SideCard from '../../SideCard'
 
 
 class IndiCommBlogReview extends React.Component{

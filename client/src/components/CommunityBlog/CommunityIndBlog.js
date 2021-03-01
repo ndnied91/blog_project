@@ -17,7 +17,7 @@ import '../../srcStyles.css'
 import CommunitySideCard from './CommunitySideCard'
 
 
-import ConfirmCommunityModal from './ConfirmCommunityModal'
+import ConfirmCommunityModal from './EverythingUserTouches/ConfirmCommunityModal'
 
 class IndividualBlog extends React.Component {
   constructor(props) {

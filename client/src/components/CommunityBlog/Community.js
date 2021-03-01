@@ -5,16 +5,16 @@ import Header from './../Header'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import CommModal from './CommModal.js'
+import CommModal from './EverythingUserTouches/CommModal.js'
 
 import { fetchApprovedCommBlogs, fetchApprovedCommBlog } from '../../actions/communityIndex'
 
 
 import { getTags} from '../../actions/'
 
-import CommunityForm from './CommunityForm'
+import CommunityForm from './EverythingUserTouches/CommunityForm'
 
-import PreviewCommunityPage from './PreviewCommunityPage'
+import PreviewCommunityPage from './EverythingUserTouches/PreviewCommunityPage'
 
 class Community extends React.Component{
 constructor(props){

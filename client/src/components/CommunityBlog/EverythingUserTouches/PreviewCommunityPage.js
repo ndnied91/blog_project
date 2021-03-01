@@ -7,11 +7,11 @@ import {connect} from 'react-redux'
 import {withRouter } from 'react-router-dom'
 
 
-import { submitCommunityPost , previewBlog} from '../../actions/communityIndex.js'
+import { submitCommunityPost , previewBlog} from '../../../actions/communityIndex.js'
 
 import ConfirmAddModal from './ConfirmAddModal'
 
-import CommunitySideCard from './CommunitySideCard'
+import CommunitySideCard from '../CommunitySideCard'
 
 class PreviewCommunityPage extends React.Component{
   constructor(props){

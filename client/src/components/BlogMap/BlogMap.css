@@ -35,3 +35,33 @@ border: none;
 .mapboxgl-map{
     border: none;
 }
+
+
+.react-geocoder input{
+  width: 400px;
+  height: 35px;
+  z-index: -4;
+}
+
+.react-geocoder{
+  float: left;
+  margin-top: 40px;
+  opacity: .8;
+}
+
+
+
+.react-geocoder-results {
+  background-color: red;
+
+    float: right;
+}
+
+
+
+ /* .react-geocoder-item{
+  background-color: white;
+    width: 600px;
+      z-index: 4;
+      float: right;
+} */

@@ -2,74 +2,112 @@ import React from 'react'
 
 import ReactMapboxGl, { Layer, Feature, Marker , Popup } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
+import Geocoder from 'react-mapbox-gl-geocoder'
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import './BlogMap.css'
+
+import Pin from './Pin'
+
 mapboxgl.accessToken ='pk.eyJ1IjoiZGFubnk5MSIsImEiOiJja2xhM2Fja3MyYzRlMnZucjlidzJsdHVxIn0.9F9Y7wmH-nZogsGoNTKyyg'
+
+
+const Map = ReactMapboxGl({
+  accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA'
+});
+
+
+
+const mapAccess = {
+    mapboxApiAccessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA'
+}
+
+
+const queryParams = {
+    country: 'us'
+}
+
 
 class BlogMap extends React.Component{
   constructor(props) {
   super(props);
-  this.state = {
-  lng: -74.5,
-  lat: 40,
-  zoom: 9
-  };
+      this.state = {
+      lng: -74.5,
+      lat: 40,
+      zoom: 9,
+      viewport: {}
+    };
+
+      this._onClickMap = this._onClickMap.bind(this);
   }
+
+
+  onSelected = (viewport, item) => {
+      this.setState({ lat: viewport.latitude , lng: viewport.longitude   })
+
+     }
 
 
 
   _onClickMap(map, evt){
-    console.log(evt.lngLat);
+    console.log(evt.lngLat.lat);
+    this.setState({ lat: evt.lngLat.lat , lng: evt.lngLat.lng   })
+
   }
 
 
   render(){
 
-    const Map = ReactMapboxGl({
-      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA'
-    });
 
+    function onDragEnd() {
 
+    }
 
 
     return(
       <div>
-            <Map
-              style="mapbox://styles/mapbox/streets-v9"
-              containerStyle={{
-                height: '600px',
-                width: '600px'
-              }}
-                center={[this.state.lng, this.state.lat]}
-                zoom={[this.state.zoom]}
-                onClick={this._onClickMap}
-              >
 
 
-              <Marker
-                coordinates={[ this.state.lng, this.state.lat ]}
-                anchor="bottom">
-                <h1>You are here</h1>
-                </Marker>
-
-
-                <Popup
-                  coordinates={[ this.state.lng, this.state.lat ]}
-                    offset={{
-                        'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-                      }}>
-                      <p>You are here</p>
-                </Popup>
-
-
-              <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-17' }}>
-                <Feature
-                coordinates={[this.state.lng, this.state.lat]}
-                />
-              </Layer>
-
-          </Map>
+      <div>
+        <Geocoder
+            {...mapAccess} onSelected={this.onSelected} viewport={this.state.viewport} hideOnSelect={true}
+              queryParams={queryParams}
+              />
       </div>
+
+
+
+                  <Map
+                    style="mapbox://styles/mapbox/streets-v9"
+                    containerStyle={{
+                      height: '600px',
+                      width: '600px'
+                    }}
+                      center={[this.state.lng, this.state.lat]}
+                      zoom={[this.state.zoom]}
+                      onClick={this._onClickMap}
+                      onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
+                    >
+
+
+
+
+                       <Marker
+                           coordinates={[ this.state.lng, this.state.lat ]}
+                           anchor="bottom"
+                           draggable
+                           onMoseOver={(e)=> alert(e)}
+                         >
+                         <i class="fas fa-3x fa-map-marker"></i>
+                        </Marker>
+
+
+
+
+                </Map>
+      
+    </div>
     )
   }
 }
@@ -82,7 +120,7 @@ export default BlogMap
 
 
 
-
+//
 //
 //
 // import React, { useRef, useEffect, useState } from 'react';
@@ -120,11 +158,25 @@ export default BlogMap
 //       setZoom(map.getZoom().toFixed(2));
 //     });
 //
-//     map.on('click' , (e)=> console.log(e))
+//
+//     map.on('click' , (e)=>{
+//       // console.log( [ e.lngLat.lng , e.lngLat.lat] )
+//       var marker = new mapboxgl.Marker()
+//         // .setLngLat([ e.lngLat.lng , e.lngLat.lat ])
+//         .setLngLat([  -80.8002 , 27.3822 ])
+//
+//           .addTo(map); // add the marker to the map
+//     })
+//
+//
+//
+//
+//
+//
 //
 //
 //     // Clean up on unmount
-//     return () => map.remove();
+//     // return () => map.remove();
 //   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 //
 //   return (

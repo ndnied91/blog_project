@@ -8,7 +8,7 @@ import {withRouter } from 'react-router-dom'
 import {reduxForm, Field} from 'redux-form'
 import {connect} from 'react-redux'
 
-import {  previewBlog } from '../../actions/communityIndex.js'
+import {  previewBlog } from '../../../actions/communityIndex.js'
 
 import swal from 'sweetalert';
 import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS

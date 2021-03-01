@@ -3,7 +3,7 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 
-import { deleteCommunityBlog } from '../../actions/communityIndex'
+import { deleteCommunityBlog } from '../../../actions/communityIndex'
 
 import { Button , Modal} from 'react-bootstrap';
 

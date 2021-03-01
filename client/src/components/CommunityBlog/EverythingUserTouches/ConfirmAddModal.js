@@ -4,7 +4,7 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 
-import { submitCommunityPost , previewBlog} from '../../actions/communityIndex.js'
+import { submitCommunityPost , previewBlog} from '../../../actions/communityIndex.js'
 
 import { Button , Modal} from 'react-bootstrap';
 

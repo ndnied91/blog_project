@@ -13,6 +13,7 @@ const app = express();
 
 // var User = require('./models/User.js')
 
+const path = require('path');
 
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI)

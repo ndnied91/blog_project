@@ -84,6 +84,7 @@ class BlogMap extends React.Component{
                       height: '600px',
                       width: '600px'
                     }}
+                    
                       center={[this.state.lng, this.state.lat]}
                       zoom={[this.state.zoom]}
                       onClick={this._onClickMap}
@@ -106,7 +107,7 @@ class BlogMap extends React.Component{
 
 
                 </Map>
-      
+
     </div>
     )
   }

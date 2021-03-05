@@ -1,14 +1,27 @@
 import React from 'react'
 
 import ReactMapboxGl, { Layer, Feature, Marker , Popup } from 'react-mapbox-gl';
-import mapboxgl from 'mapbox-gl';
 import Geocoder from 'react-mapbox-gl-geocoder'
-
-import 'mapbox-gl/dist/mapbox-gl.css';
-
+import Pin from './Pin'
 import './BlogMap.css'
 
-import Pin from './Pin'
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from 'mapbox-gl';
+
+
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
+
+
+
+
+
+
+
+
 
 mapboxgl.accessToken ='pk.eyJ1IjoiZGFubnk5MSIsImEiOiJja2xhM2Fja3MyYzRlMnZucjlidzJsdHVxIn0.9F9Y7wmH-nZogsGoNTKyyg'
 
@@ -84,7 +97,7 @@ class BlogMap extends React.Component{
                       height: '600px',
                       width: '600px'
                     }}
-                    
+
                       center={[this.state.lng, this.state.lat]}
                       zoom={[this.state.zoom]}
                       onClick={this._onClickMap}

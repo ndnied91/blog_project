@@ -11,7 +11,9 @@ const CommunityBlog = require('../models/CommunityBlogs.js')
 const ReviewedCommBlogs = require('../models/ReviewedCommunityBlogs.js')
 
 
-let id = '60203af896cca33740f1bb11'
+const keys = require('../config/keys')
+
+let id = keys.blogID
 
 
 module.exports = (app) => {

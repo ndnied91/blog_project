@@ -18,7 +18,9 @@ const FeaturedHolding = require('../models/FeaturedHolding.js')
 const User = require('../models/User.js')
 
 
-let id = '60203af896cca33740f1bb11'
+const keys = require('../config/keys')
+
+let id = keys.blogID
 
 // const filters = require("./filters.js");
 

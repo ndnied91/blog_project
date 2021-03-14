@@ -8,6 +8,9 @@ import { setPermaCookie , fetchIndividualBlog , getSimliarBlogs} from '../../act
 import {reduxForm} from 'redux-form'
 import ReactQuill from 'react-quill';
 
+
+import keys from '../config/keys'
+
 import '../../srcStyles.css'
 
 import EditBlog from './EditBlog'
@@ -99,7 +102,7 @@ renderAuthor(){
         <div className="text-muted" style={{fontSize: '15px' }}> Created by: {this.props.currentBlog.author}</div>
           <div>
 
-              <a href={`https://www.instagram.com/${this.props.currentBlog.instagram}`} target="_blank">   <i class="fab fa-2x fa-instagram"></i>  </a> 
+              <a href={`https://www.instagram.com/${this.props.currentBlog.instagram}`} target="_blank">   <i class="fab fa-2x fa-instagram"></i>  </a>
 
   </div>
       </div>
@@ -135,6 +138,7 @@ renderAuthor(){
   }
 
   render() {
+      console.log(keys.test)
 
     // console.log(this.props.currentBlog)
 

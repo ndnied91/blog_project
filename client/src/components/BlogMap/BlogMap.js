@@ -63,8 +63,9 @@ class BlogMap extends React.Component{
 
 
   render(){
-    
+
     console.log(keys.mapboxApiAccessToken)
+    console.log(keys.test)
 
 
     function onDragEnd() {

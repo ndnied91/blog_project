@@ -14,15 +14,6 @@ import mapboxgl from 'mapbox-gl';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
-
-
-
-
-
-
-
-
-
 mapboxgl.accessToken ='pk.eyJ1IjoiZGFubnk5MSIsImEiOiJja2xhM2Fja3MyYzRlMnZucjlidzJsdHVxIn0.9F9Y7wmH-nZogsGoNTKyyg'
 
 

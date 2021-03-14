@@ -1,5 +1,5 @@
 
 
 module.exports = {
-    mapboxApiAccessToken: process.env.mapboxApiAccessToken
+    mapboxApiAccessToken: process.env.MAPBOXAPIACCESSTOKEN
 }

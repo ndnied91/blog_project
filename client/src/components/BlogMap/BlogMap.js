@@ -8,6 +8,7 @@ import './BlogMap.css'
 import keys from '../config/keys'
 
 
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 
@@ -15,7 +16,7 @@ import mapboxgl from 'mapbox-gl';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
-mapboxgl.accessToken =keys.mapboxApiAccessToken
+mapboxgl.accessToken= keys.mapboxApiAccessToken
 
 
 const Map = ReactMapboxGl({
@@ -62,6 +63,8 @@ class BlogMap extends React.Component{
 
 
   render(){
+    
+    console.log(keys.mapboxApiAccessToken)
 
 
     function onDragEnd() {

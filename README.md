@@ -11,3 +11,11 @@ NodeJS for backend
 MongoDB for datbase
 
 
+https://traveling-the-world.herokuapp.com
+
+
+this site is no where near finalized 
+
+still needs to be styled with a few stylistic changes 
+
+site takes a bit to load due to heroku starting up the react app, so please be patient (will be fixed on production)

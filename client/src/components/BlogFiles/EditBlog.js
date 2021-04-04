@@ -69,7 +69,6 @@ class EditBlog extends React.Component{
                         state: this.state.state,
                         tags: verifyTags(this.state.tags)
 
-
                         }
       await this.props.updateBlog(updatedBlog, this.props.history)
       await this.props.fetchIndividualBlog(this.state.title)

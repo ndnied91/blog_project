@@ -42,12 +42,11 @@ export const fetchBlogs = ( skip=0 , limit= 5 ) => async dispatch => {
 
 //make a call to this api with params that return the specific number of blogs
 export const fetchIndividualBlog = (title) => async dispatch => {
-  console.log('LOADING INDIVIDUAL BLOG')
+  // console.log('LOADING INDIVIDUAL BLOG')
   //HERE WE WILL BE FIXING THE HIT COUNT
 
   const res = await axios.get(`/api/blogs/${title}`)
-
-    console.log(res.data)
+    // console.log(res.data)
    dispatch({ type: 'CURRENT_BLOG' , payload: res.data})
 }
 
@@ -170,6 +169,9 @@ export const deleteBlog = (id , history) => async dispatch =>{
 
 
 export const updateBlog = (id , history) => async dispatch =>{
+
+  console.log(id)
+  console.log(id._id)
   const res = await axios.post(`/api/blogs/edit/${id._id}` , id)
    dispatch({ type: 'CURRENT_BLOG' , payload: res.data})
 

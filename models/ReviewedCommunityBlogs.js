@@ -17,7 +17,8 @@ const reviewedCommunityBlogsSchema = new Schema({
   tags: [{ type: String }],
   secret: String,
   featured: Boolean,
-  instagram: String
+  instagram: String,
+  coords: { lat: Number , lng: Number   }
 })
 
 

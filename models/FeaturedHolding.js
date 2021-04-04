@@ -16,7 +16,8 @@ const featuredSchema = new Schema({
   tags: [{ type: String }],
 
   author: String, //mainly for featured blogs
-  instagram: String
+  instagram: String,
+  coords: { lat: Number , lng: Number   }
 })
 
 

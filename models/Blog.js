@@ -17,7 +17,8 @@ const blogSchema = new Schema({
 
   author: String, //mainly for featured blogs
   original_post_date: String, //for featured blogs ,
-  instagram: String 
+  instagram: String ,
+  coords: { lat: Number , lng: Number   }
 })
 
 

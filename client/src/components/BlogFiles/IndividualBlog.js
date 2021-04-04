@@ -111,7 +111,7 @@ renderAuthor(){
 
   renderBlogContent() {
     if (this.props.currentBlog) {
-        console.log(this.props.currentBlog)
+        // console.log(this.props.currentBlog)
 
       return (
 
@@ -138,8 +138,7 @@ renderAuthor(){
   }
 
   render() {
-      console.log(keys.test)
-
+      // console.log(keys.test)
     // console.log(this.props.currentBlog)
 
     return (

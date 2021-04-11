@@ -25,7 +25,7 @@ class EditBlog extends React.Component{
 
       this.state = { title: this.props.blog.title , body: this.props.blog.body ,
                     image: this.props.blog.image , summary: this.props.blog.summary , state: this.props.blog.state,
-                    tags: this.props.blog.tags
+                    tags: this.props.blog.tags, coords: this.props.blog.coords
                         };
         //IM SURE THIS CAN BE DONE EASIER BUT IT WORKS SO WHATEVA
 
@@ -67,7 +67,8 @@ class EditBlog extends React.Component{
                         image: this.state.image,
                         summary: this.state.summary,
                         state: this.state.state,
-                        tags: verifyTags(this.state.tags)
+                        tags: verifyTags(this.state.tags),
+                        coords: this.state.coords
 
                         }
       await this.props.updateBlog(updatedBlog, this.props.history)
@@ -247,6 +248,7 @@ class EditBlog extends React.Component{
 
 
 const mapStateToProps = (state)=>{
+  console.log(state.currentBlog)
   return { blog: state.currentBlog}
 }
 

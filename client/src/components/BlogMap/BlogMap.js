@@ -67,6 +67,21 @@ class BlogMap extends React.Component{
 
   _onClickMap(map, evt){
     this.setState({ lat: evt.lngLat.lat , lng: evt.lngLat.lng   })
+
+    let updatedBlog = {
+                      _id:this.props.currentBlog._id,
+                      body: this.props.currentBlog.body,
+                      created: this.props.currentBlog.created,
+                      hitCount :this.props.currentBlog.hitCount,
+                      image: this.props.currentBlog.image,
+                      state: this.props.currentBlog.state,
+                      summary: this.props.currentBlog.summary,
+                      tags: this.props.currentBlog.tags,
+                      timestamp: this.props.currentBlog.timestamp,
+                      title: this.props.currentBlog.title,
+                      coords : {lat:  evt.lngLat.lat, lng: evt.lngLat.lng}
+                      }
+                      this.props.updateBlog(updatedBlog)
   }
 
 
@@ -87,13 +102,14 @@ class BlogMap extends React.Component{
       )
     }
     const showCoords = () =>{
-      return(
-        <div> Coords : <strong> Lat: </strong> {this.state.lat}   <strong> Lng: </strong>  {this.state.lng} </div>
-      )
+        if(this.props.currentBlog.coords){
+          return(
+            <div> Coords : <br/> <strong> Lat: </strong> {this.props.currentBlog.coords.lat }   <strong> Lng: </strong>  {this.props.currentBlog.coords.lng }  </div>
+          )
+        }
+        else return null
+
     }
-
-
-
 
     const update =  ( lat, lng )=>{
 
@@ -110,20 +126,101 @@ class BlogMap extends React.Component{
                         title: this.props.currentBlog.title,
                         coords : {lat: lat, lng: lng}
                         }
-
-      this.props.updateBlog(updatedBlog)
-    }
-
+                        this.props.updateBlog(updatedBlog)
+                      }
 
 
-    const getCoords = () =>{
 
-      if(this.props.currentBlog){
-        return this.props.currentBlog.coords
-      }
-      else
-        return (this.state)
-    }
+
+
+
+const renderMap=()=>{
+  if(this.props.currentBlog){
+    return(
+      <Map
+        style="mapbox://styles/mapbox/streets-v9"
+        containerStyle={{
+          height: '600px',
+          width: '600px'
+        }}
+
+
+
+          center={ [ this.state.lng ,  this.props.currentBlog.coords.lat  ||null ] }
+          zoom={[this.state.zoom]}
+          onClick={ this.props.auth ? this._onClickMap : null  }
+          onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
+        >
+
+           <Marker
+            // coordinates={ [ this.props.currentBlog.coords.lng ,  this.props.currentBlog.coords.lat ]  }
+               coordinates={[ this.props.currentBlog.coords.lng || this.state.lng ,  this.props.currentBlog.coords.lat  || this.state.lat  ]}
+               anchor="bottom"
+               draggable
+               onMoseOver={(e)=> alert(e)}
+             >
+
+             <Pin/>
+            </Marker>
+    </Map>
+    )
+  }
+  else
+    return null
+
+}
+
+
+
+
+
+
+    // const renderMap=()=>{
+    //   if(this.props.currentBlog){
+    //     return(
+    //
+    //         <div>
+    //           {showCoords()}
+    //
+    //             <Map
+    //               style="mapbox://styles/mapbox/streets-v9"
+    //               containerStyle={{
+    //                 height: '600px',
+    //                 width: '600px'
+    //               }}
+    //
+    //
+    //                 center={ [ this.props.currentBlog.coords ? this.props.currentBlog.coords.lng :  this.state.lng ,  this.props.currentBlog.coords ? this.props.currentBlog.coords.lat :  this.state.lat  ] }
+    //                 zoom={[this.state.zoom]}
+    //                 onClick={ this.props.auth ? this._onClickMap : null  }
+    //                 onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
+    //               >
+    //
+    //                  <Marker
+    //                      coordinates={ [ this.props.currentBlog.coords ? this.props.currentBlog.coords.lng :  this.state.lng ,  this.props.currentBlog.coords ?this.props.currentBlog.coords.lat :  this.state.lat  ] }
+    //                      anchor="bottom"
+    //                      draggable
+    //                      onMoseOver={(e)=> alert(e)}
+    //                    >
+    //
+    //                    <Pin/>
+    //                   </Marker>
+    //           </Map>
+    //
+    //     </div>
+    //     )
+    //   }
+    //   else
+    //     return null
+    //
+    // }
+
+
+
+
+
+
+
 
 
 
@@ -136,38 +233,14 @@ class BlogMap extends React.Component{
 
                   { this.props.auth ? showGeoCoder() : null }
 
-                  {showCoords() }
-
-                  {console.log(getCoords())}
-
-
-                  <Map
-                    style="mapbox://styles/mapbox/streets-v9"
-                    containerStyle={{
-                      height: '600px',
-                      width: '600px'
-                    }}
-
-                      center={[this.state.lng, this.state.lat]}
-                      zoom={[this.state.zoom]}
-                      onClick={ this.props.auth ? this._onClickMap : null  }
-                      onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
-                    >
-
-                       <Marker
-                           coordinates={[ this.state.lng, this.state.lat ]}
-                           anchor="bottom"
-                           draggable
-                           onMoseOver={(e)=> alert(e)}
-                         >
-
-                         <Pin/>
-                        </Marker>
 
 
 
 
-                </Map>
+
+
+                  {renderMap()}
+
 
                 { this.props.auth ?   <button onClick={ ()=> update( this.state.lat , this.state.lng ) }> Update Map </button> : null }
 
@@ -178,7 +251,6 @@ class BlogMap extends React.Component{
 
 
 const mapStateToProps = (state) =>{
-  // console.log(state.currentBlog)
   return {auth: state.auth  , currentBlog: state.currentBlog}
 }
 

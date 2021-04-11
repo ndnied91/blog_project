@@ -3,19 +3,16 @@
 import React from 'react'
 import _ from 'lodash'
 import ReactQuill from 'react-quill'; // ES6 //ADDDDDDEDDD THIS
-
-
 import {connect} from 'react-redux'
-
-
 import { getTags} from '../../actions'
-
-
 import {reduxForm, Field} from 'redux-form'
 //alows to connect to redux store
 //basically the same as the connect helper
-
 import { Link } from 'react-router-dom'
+
+import InputText from './InputText'
+
+import CreateMap from './CreateMap'
 
 const formFields = [
   {label: 'Blog Title' , name: 'title', type: 'text'},
@@ -23,7 +20,10 @@ const formFields = [
   {label: 'Summary', name: 'summary' , type :'input'},
   {label: 'Image', name: 'image' , type: 'text' },
   {label: 'State', name: 'state' , type: 'text' },
-  {label: 'Tags', name: 'tags' , type: 'text' }
+  {label: 'Tags', name: 'tags' , type: 'text' },
+  {label: 'lat' , name: 'lat',  type: 'text' },
+  {label: 'lng' , name: 'lng',  type: 'text' },
+  {label: 'accountno' ,name: "accountno" }
 ]
 
 
@@ -68,7 +68,7 @@ class BlogForm extends React.Component{
 
   constructor(props) {
   super(props)
-  this.state = { text: '' } // You can also pass a Quill Delta here
+  this.state = { text: ''  , lng: null, lat: null, zoom: 9} // You can also pass a Quill Delta here
   this.handleChange = this.handleChange.bind(this)
 }
 
@@ -82,17 +82,25 @@ async componentDidMount(){
 }
 
 
+
+// componentDidMount() {
+//     this.props.initialize({ accountno: null });
+//     // set the value individually
+//
+//   }
+
+
+
   render(){
 
+        const showTags = () =>{
+          if(this.props.tags !== null){
+            return this.props.tags.map((tag)=>{
+              return <span className="btn btn-link disabled"> {tag} </span>
+            })
+          }
+        }
 
-const showTags = () =>{
-
-  if(this.props.tags !== null){
-    return this.props.tags.map(( tag)=>{
-      return <span className="btn btn-link disabled"> {tag} </span>
-    } )
-  }
-}
 
 
 
@@ -176,11 +184,30 @@ const showTags = () =>{
                   {showTags()}
 
 
+                    <CreateMap  getCoords={ (lat,lng)=>{
+                        // this.props.initialize({ lat :lat , lng: lng})
+                        this.setState({lat,lng})
+                        }
+                       }/>
+
+
+                   <Field component="text"  name="lat" label='lat' type="text">
+                     <input className="form-control" style={{height: '55px' , marginBottom: "20px"}}  name="lat" key="lat" label='lat' type="text" placeholder="Latitude" value={this.state.lat}  />
+                   </Field>
+
+                   <Field component="text" name="lng" label='lng' type="text"  value={this.state.lng}>
+                     <input className="form-control" style={{height: '55px' , marginBottom: "20px"}}  name="lng"  label='lng'  placeholder="Longitude" value={this.state.lng}  />
+                   </Field>
+
+
+                   <Field className="form-control"  style={{marginBottom: '5px', height: '55px'}} key='lat'  component='input'  type='text'  label='lat'  name= 'lat'  placeholder='Latitude' value={this.state.lat}  />
+                   <Field className="form-control"  style={{marginBottom: '5px', height: '55px'}} name="lng"  component='input'  type='text'  label='lng'  placeholder='Longitude' value={this.state.lng} />
+
+
 
 
 
                 </div>
-
 
 
 
@@ -199,6 +226,8 @@ const showTags = () =>{
 
 
 
+
+
         </form>
       </div>
     )
@@ -212,7 +241,6 @@ function validate(values){
 
     _.each(formFields, ({name})=>{
         if(!values[name]){
-
           errors[name] = `You must provide a value`
         }
 
@@ -233,7 +261,7 @@ const mapStateToProps = (state)=>{
 
 
 export default reduxForm({
-  validate: validate,
   form: 'surveyForm',
   destroyOnUnmount: false
+
 })(connect(mapStateToProps , {getTags})(BlogForm))

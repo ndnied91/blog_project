@@ -175,6 +175,6 @@ export const deleteFromFeatured= (id , history )=> async dispatch => {
 // COMMUNITY_PREVIEW
 
 export const previewBlog = ( values ) =>({
-  type: 'COMMUNITY_PREVIEW',
+  type: 'PREVIEW',
   payload: values
 })

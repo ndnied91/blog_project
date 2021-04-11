@@ -136,8 +136,8 @@ showPreview(){
 
 
 const mapStateToProps = (state) => {
-  console.log(state.previewComm)
-  return { blogs: state.communityBlogsApproved , preview : state.previewComm}
+  // console.log(state.preview)
+  return { blogs: state.communityBlogsApproved , preview : state.preview}
 }
 
 export default connect( mapStateToProps , {fetchApprovedCommBlogs , fetchApprovedCommBlog , getTags} )(Community)

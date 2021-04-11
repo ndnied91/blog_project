@@ -47,7 +47,7 @@ class PreviewCommunityPage extends React.Component{
 
             <div className="style">
                <ReactQuill
-                value={blog.communityBody}
+                value={blog.body}
                 modules = {{ toolbar: false }}
                 readOnly={true} />
             </div>
@@ -65,7 +65,7 @@ const submitandClear=()=>{
     console.log('in preview')
     console.log(this.props.blog)
     this.props.submitCommunityPost(this.props.blog, this.props.history)
-   let clearer = { title:'', author:'', communityBody: '', image: '', secret:'', state: '', tags: '', featured: false, instagram: ''}
+   let clearer = { title:'', author:'', body: '', image: '', secret:'', state: '', tags: '', featured: false, instagram: ''}
    this.props.previewBlog(clearer)
 }
 
@@ -113,7 +113,8 @@ const confirmModal=()=>{
 }
 
 const mapStateToProps = (state) =>{
-  return {  blog: state.previewComm }
+  console.log(state.preview)
+  return {  blog: state.preview }
 }
 
 

@@ -62,10 +62,7 @@ module.exports = (app) => {
 //ADDS A BLOG TO THE DATABASE
     app.post('/api/blogs', async(req,res)=>{
 
-            const {title,body, image , summary , state , tags , author  , instagram , coords } = req.body
-            // console.log(tags)
-            // console.log(typeof tags)
-            console.log(coords)
+            const {title,body, image , summary , state , tags , author  , instagram, lng, lat  } = req.body
 
             const newBlog = new Blog({
 
@@ -80,7 +77,7 @@ module.exports = (app) => {
               author,
               original_post_date: moment.tz(Date.now(), "America/New_York").format(),
               instagram,
-              coords
+              coords:  { lat, lng}
             })
 
 

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-
+import {reducer as reduxForm} from 'redux-form' // reducer for redux form
 
 
 import authReducer from './authReducer'
@@ -8,8 +8,6 @@ import blogsReducer from './blogsReducer'
 import errorsReducer from './errorsReducer'
 
 import setPermaReducer from './setPermaReducer'
-
-import {reducer as reduxForm} from 'redux-form' // reducer for redux form
 
 import currentBlogReducer from './currentBlogReducer'
 
@@ -41,7 +39,7 @@ import feedbackReducer from './feedbackReducer'
 
 
 
-import communityPreviewReducer from './communityPreviewReducer'
+import previewReducer from './previewReducer'
 
 import fetchFeaturedReducer from './fetchFeaturedReducer' //this is for getting featured blogs into dash
 
@@ -49,8 +47,8 @@ export default combineReducers({
   auth: authReducer,
   blogs: blogsReducer,
   currentBlog: currentBlogReducer,
-  form: reduxForm,
   error: errorsReducer,
+  form: reduxForm,
   permaCookie : setPermaReducer,
   currentPage :currentPageReducer,
   allBlogs :fetchAllBlogsReducer,
@@ -64,6 +62,6 @@ export default combineReducers({
   tags : tagsReducer,
   username: currrentUserNameReducer,
   feedback: feedbackReducer, //this is for getting feedback from users
-  previewComm: communityPreviewReducer, //this is for getting the preview to work
+  preview: previewReducer, //this is for getting the preview to work
   featuredBlogs : fetchFeaturedReducer  //this is for getting featured blogs into dash
 })

@@ -21,9 +21,8 @@ class CommunityForm extends React.Component{
     const {preview} = this.props
     this.state = { title: preview.title   ,
                    author: preview.author ,
-                   communityBody: preview.communityBody  ,
+                   body: preview.body  ,
                    image: preview.image  ,
-
                    summary: preview.summary  ,
                    state: preview.state ,
                    tags: preview.tags ,
@@ -49,7 +48,7 @@ class CommunityForm extends React.Component{
 
 
    onInputchangeBod =(event)=> {
-      this.setState({ communityBody: event });
+      this.setState({ body: event });
     }
 
 
@@ -66,7 +65,7 @@ class CommunityForm extends React.Component{
 
           style={{backgroundColor: '#fff' , display: "block" , width: "100%" , marginBottom: "20px" }}
           placeholder='Body'
-          value={this.state.communityBody}
+          value={this.state.body}
           modules = {{ toolbar: true }}
            onChange={(newValue, delta, source) => {
              if (source === 'user') {
@@ -122,8 +121,8 @@ const validation =(missing)=>{
 
     missing.forEach((item, i) => {
       console.log(item)
-      if(item === 'communitybody'){
-        item = 'community'
+      if(item === 'body'){
+        item = 'body'
       }
       formatted.push( ' '+ capitalizeFirstLetter(item) )
     });
@@ -152,7 +151,7 @@ const onSubmitForm= async()=>{
   for (const property in this.state) {
     // console.log( property,  this.state[property].length)
       if(this.state[property].length === 0){
-        if(property === 'communityBody'){ missing.push('body') }
+        if(property === 'body'){ missing.push('body') }
         else{ missing.push(property) }
       }
     }
@@ -174,7 +173,7 @@ const onSubmitForm= async()=>{
 
 
 
-
+  console.log(this.state)
 
     return(
 
@@ -201,8 +200,8 @@ const onSubmitForm= async()=>{
 
 
           <Field
-          name="communityBody"
-          key="communityBody"
+          name="body"
+          key="body"
           theme={"bubble"}
           onChange={this.onInputchangeBod}
           component={this.renderQuill} />
@@ -334,7 +333,7 @@ const onSubmitForm= async()=>{
 }
 
 const mapStateToProps = (state)=>{
-  return {tags: state.tags , preview: state.previewComm}
+  return {tags: state.tags , preview: state.preview}
 }
 
 

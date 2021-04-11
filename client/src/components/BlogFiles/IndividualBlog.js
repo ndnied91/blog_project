@@ -121,6 +121,7 @@ renderAuthor(){
           <div style={{ textAlign: 'left' }}>
                 <div className="blogTitle"> {this.props.currentBlog.title.split('-').join(' ')}</div>
                 <div className="text-muted" style={{fontSize: '15px' }}> {this.props.currentBlog.created}</div>
+
                 { this.props.currentBlog.author ? this.renderAuthor() : null }
               <div className="style">
                  <ReactQuill
@@ -150,7 +151,13 @@ renderAuthor(){
               <div className="col-lg-8">  {this.state.showComponent ?  <EditBlog blog={this.props.blog} onCancel={this._onCancelClick} hideForm={this._hideForm} />  : <div>{ this.renderBlogContent()} </div>  }  </div>
               <div className="col-lg-4 customCardStyle" style={{minWidth: '275px'}}> <SideCard/> </div>
 
-              <div className="col-lg-4 customCardStyle" style={{paddingTop: '30px' , border: 'none'}}> <BlogMap/> </div>
+
+              <div className="col-lg-4 customCardStyle" style={{paddingTop: '30px' , border: 'none'}}>
+
+
+                { this.props.currentBlog ? <BlogMap/> : null }
+
+              </div>
             </div>
           </div>
        </div>
@@ -163,9 +170,13 @@ renderAuthor(){
 
 
 const mapStateToProps = (state, props) => {
-  // console.log(state)
+  console.log(state.currentBlog)
   return { user : state.permaCookie, currentBlog: state.currentBlog}
 }
+
+
+
+// export default connect( mapStateToProps,{  setPermaCookie , fetchIndividualBlog , getSimliarBlogs} )(IndividualBlog)
 
 
 

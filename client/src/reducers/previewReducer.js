@@ -3,14 +3,17 @@
 const INITIAL_STATE={
   title:'',
   author:'',
-  communityBody: '',
+  body: '',
   image: '',
   summary: '',
   secret:'',
   state: '',
   tags: '',
   featured: false,
-  instagram: ''
+  instagram: '',
+  lat: '',
+  lng: '',
+  zoom: 9
 }
 
 
@@ -18,7 +21,7 @@ const INITIAL_STATE={
 
 export default function(state= INITIAL_STATE  , action){
   switch(action.type){
-    case 'COMMUNITY_PREVIEW':
+    case 'PREVIEW':
       return action.payload
 
     default:

@@ -61,7 +61,7 @@ export const fetchCurrentBlog = ( id=null) => {
 //THIS IS JUST FOR THE FAVORITES
   export const fetchFavorites = ( skip=0 , limit= 10 ) => async dispatch => {
     const res = await axios.get(`/api/blogs/favorites`)
-    console.log(res)
+    // console.log(res)
      dispatch({ type: 'FETCH_FAVORITES' , payload: res.data})
 
   }
@@ -85,8 +85,9 @@ export const clearUser = () =>({
 
 
   export const submitPost = (values, history) => async dispatch => {
+
     const res = await axios.post('/api/blogs', values)
-    console.log(res)
+
     history.push('/')
     dispatch({ type: 'FETCH_USER' , payload : res.data })
   }
@@ -238,3 +239,12 @@ export const getFeedback = () => async dispatch => {
   const res = await axios.get(`/api/feedback`)
    dispatch({ type: 'FETCH_FEEDBACK' , payload: res.data})
 }
+
+
+
+
+
+export const previewBlog = ( values ) =>({
+  type: 'PREVIEW',
+  payload: values
+})

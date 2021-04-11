@@ -49,7 +49,6 @@ function preSubmitEdit(values, history){
     values.title = values.title.trim().split(' ').join('-').trim()
     values.tags =_.uniq(values.tags.split(/[ ,.]+/))
 
-
     props.submitPost(values, history)
 }
 
@@ -124,9 +123,8 @@ function preSubmitEdit(values, history){
 }
 
 
-const mapStateToProps = ({form})=>{
-  // console.log({form})
-  return { formValues : form.surveyForm.values}
+const mapStateToProps = (state)=>{
+  return { formValues : state.preview}
 }
 
 

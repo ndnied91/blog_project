@@ -250,9 +250,4 @@ const mapStateToProps = (state)=>{
   return { blog: state.currentBlog}
 }
 
-
-
-
-
-
 export default connect(mapStateToProps , {updateBlog , fetchIndividualBlog})(withRouter(EditBlog))

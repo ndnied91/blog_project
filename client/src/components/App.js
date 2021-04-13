@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect , HashRouter  } from 'react-router-dom'
 import About from './About'
 import Contact from './Contact'
 import Archives from './Archives'
@@ -114,7 +114,7 @@ class App extends React.Component{
     return(
 
           <div ref={(ref) => this._div = ref}>
-                <BrowserRouter>
+                <HashRouter >
                     <div style={{paddingBottom: '500px' }}>
                       <Switch>
                         <Route exact path="/" component={BlogsList} />
@@ -158,7 +158,7 @@ class App extends React.Component{
                    </div>
 
                    <Footer/>
-                </BrowserRouter>
+                </HashRouter>
 
 
             </div>

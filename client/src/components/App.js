@@ -114,7 +114,7 @@ class App extends React.Component{
     return(
 
           <div ref={(ref) => this._div = ref}>
-                <HashRouter >
+                <BrowserRouter >
                     <div style={{paddingBottom: '500px' }}>
                       <Switch>
                         <Route exact path="/" component={BlogsList} />
@@ -158,7 +158,7 @@ class App extends React.Component{
                    </div>
 
                    <Footer/>
-                </HashRouter>
+                </BrowserRouter>
 
 
             </div>

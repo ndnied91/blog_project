@@ -48,6 +48,12 @@ class CreateMap extends React.Component{
       this._onClickMap = this._onClickMap.bind(this);
   }
 
+  onSelected = (viewport, item) => {
+    // console.log(viewport, item)
+      this.setState({ lat: viewport.latitude , lng: viewport.longitude   })
+        this.props.getCoords(viewport.latitude  , viewport.longitude )
+     }
+
 
   _onClickMap(map, evt){
     this.setState({ lat: evt.lngLat.lat , lng: evt.lngLat.lng   })
@@ -56,34 +62,52 @@ class CreateMap extends React.Component{
 
 
   render(){
+
+    const showGeoCoder=() =>{
+      return(
+        <div>
+          <Geocoder
+              {...mapAccess} onSelected={this.onSelected} viewport={this.state.viewport} hideOnSelect={true}
+                queryParams={queryParams}
+                />
+        </div>
+      )
+    }
+
+
+
     return(
       <div>
 
-      <Map
-        style="mapbox://styles/mapbox/streets-v9"
-        containerStyle={{
-          height: '600px',
-          width: '600px'
-        }}
-
-          center={ [ this.state.lng ,  this.state.lat  ] }
-          zoom={[this.state.zoom]}
-          onClick={ this.props.auth ? this._onClickMap : null  }
-          onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
-        >
-
-           <Marker
-               coordinates={[ this.state.lng ,  this.state.lat  ]}
-               anchor="bottom"
-               draggable
-               onMoseOver={(e)=> alert(e)}
-             >
-
-             <Pin/>
-            </Marker>
-    </Map>
+          { this.props.auth ? showGeoCoder() : null }
 
 
+        <div>
+              <Map
+                style="mapbox://styles/mapbox/streets-v9"
+                containerStyle={{
+                  height: '600px',
+                  width: '600px'
+                }}
+
+                  center={ [ this.state.lng ,  this.state.lat  ] }
+                  zoom={[this.state.zoom]}
+                  onClick={ this.props.auth ? this._onClickMap : null  }
+                  onZoom={ (e)=> this.setState({ zoom:  e.getZoom() })}
+                >
+
+                   <Marker
+                       coordinates={[ this.state.lng ,  this.state.lat  ]}
+                       anchor="bottom"
+                       draggable
+                       onMoseOver={(e)=> alert(e)}
+                     >
+
+                     <Pin/>
+                    </Marker>
+            </Map>
+
+            </div>
       </div>
     )
   }

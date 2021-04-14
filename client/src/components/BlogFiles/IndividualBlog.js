@@ -170,7 +170,7 @@ renderAuthor(){
 
 
 const mapStateToProps = (state, props) => {
-  console.log(state.currentBlog)
+  // console.log(state.currentBlog)
   return { user : state.permaCookie, currentBlog: state.currentBlog}
 }
 

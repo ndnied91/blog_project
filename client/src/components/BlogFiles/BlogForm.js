@@ -13,10 +13,6 @@ import { Link } from 'react-router-dom'
 import CreateMap from './CreateMap'
 
 
-
-
-
-
 class BlogForm extends React.Component{
 
   constructor(props) {
@@ -33,7 +29,8 @@ class BlogForm extends React.Component{
                 tags: tags,
                 lng: lng,
                 lat: lat,
-                zoom: zoom} // You can also pass a Quill Delta her
+                zoom: zoom
+              } // You can also pass a Quill Delta her
 }
 
 onInputchange =(event)=> {
@@ -49,11 +46,6 @@ onInputchange =(event)=> {
   }
 
 
-
-
-// async componentDidMount(){
-//   await this.props.getTags()
-// }
 
 
 renderQuill = ({ input })=> {
@@ -84,6 +76,13 @@ renderQuill = ({ input })=> {
 
 
   render(){
+
+
+
+
+
+
+
 
     const onSubmitForm= ( event )=>{
       event.preventDefault()
@@ -168,6 +167,7 @@ renderQuill = ({ input })=> {
 
                <input className="form-control" style={{height: '55px' , marginBottom: "20px"}} name="instagram" type="text"  placeholder="What is your instagram " value={this.state.instagram} onChange={this.onInputchange} />
                <input className="form-control" style={{height: '55px' , marginBottom: "20px"}} required name="tags" type="text" value={this.state.tags} placeholder='tags - use space or commas to seperate tags' onChange={this.onInputchange} />
+
 
 
               <CreateMap  getCoords={ (lat,lng)=> this.setState({lat,lng}) } />

@@ -51,17 +51,32 @@ class BlogMap extends React.Component{
       viewport: {}
     };
 
-      // this._onClickMap = this._onClickMap.bind(this);
+
   }
 
 
 
-
-
-
   onSelected = (viewport, item) => {
-      this.setState({ lat: viewport.latitude , lng: viewport.longitude   })
-     }
+
+    let updatedBlog = {
+                      _id:this.props.currentBlog._id,
+                      body: this.props.currentBlog.body,
+                      created: this.props.currentBlog.created,
+                      hitCount :this.props.currentBlog.hitCount,
+                      image: this.props.currentBlog.image,
+                      state: this.props.currentBlog.state,
+                      summary: this.props.currentBlog.summary,
+                      tags: this.props.currentBlog.tags,
+                      timestamp: this.props.currentBlog.timestamp,
+                      title: this.props.currentBlog.title,
+                      coords : {lat: viewport.latitude, lng: viewport.longitude}
+                      }
+                      this.props.updateBlog(updatedBlog)
+    }
+
+
+
+     
 
 
 
@@ -90,10 +105,7 @@ class BlogMap extends React.Component{
 
   render(){
 
-
-
-
-    const update =  ( lat, lng )=>{
+    const update = ( lat, lng )=>{
 
       let updatedBlog = {
                         _id:this.props.currentBlog._id,
@@ -109,7 +121,7 @@ class BlogMap extends React.Component{
                         coords : {lat: lat, lng: lng}
                         }
                         this.props.updateBlog(updatedBlog)
-                      }
+      }
 
 
 
